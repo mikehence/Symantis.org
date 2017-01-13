@@ -1,23 +1,60 @@
 <% if (currentUser !== undefined) { %>
 <script>
-	var currentUser = {
-		id: '<%= currentUser.id %>',
-		username: '<%= currentUser.username %>',
-		email: '<%= currentUser.email %>',
-		first_name: '<%= currentUser.first_name %>',
-		createdAt: '<%= currentUser.createdAt %>',
-		updatedAt: '<%= currentUser.updatedAt %>'
-	};
+	var currentUser = <%- JSON.stringify(currentUser) %>;
+	console.log(currentUser);
 </script>
 <% } %>
 
-<div ng-include="'header/index.tpl.html'"></div>
+<div
+	id="sy-menu"
+	class="sy-nav sy-app"
+	ng-class="currentState"
+>
+	
+	<div ng-controller="SiteNavCtrl" ng-include src="'sitenav/index.tpl.html'"></div>
 
-<div class="header" ui-view="header">
-</div><!-- /.header -->
+	<!--
+	<div 
+		id="sitenav"
+		class="sy-nav-menu sitenav" 
+		ui-view="sitenav"
+	>
+	</div> /.sitenav -->
 
-<div class="container" ui-view="main">
-</div><!-- /.container -->
+	<div class="top-nav" ng-class="{notificationsOpen: notificationsOpen, menuOpen: menuOpen}" ui-view="header">
+	</div><!-- /.header -->
+	
+	<div id="sitenav-push" class="sitenav-push" ng-class="{notificationsOpen: notificationsOpen, menuOpen: menuOpen}">
+		<div class="sitenav-push-inner">
 
-<div class="footer" ui-view="footer">
-</div><!-- /.footer -->
+			<div ng-controller="AlertsCtrl" ng-include src="'alerts/index.tpl.html'"></div>
+			
+
+			<div class="overlay" ui-view="overlay">
+			</div><!-- /.overlay -->
+			
+			<div ng-show="loadingView" class="preloader-container">
+                <!-- loadingView is a variable defined in the $rootScope -->
+                <div class="preloader">
+                </div>
+            </div>
+
+			<div id="main" class="container" ng-class="currentState" ui-view="main">
+			</div><!-- /.container -->
+
+			<div ui-view="footer">
+			</div><!-- /.footer -->
+
+		</div>
+	</div>
+	
+	<div ng-controller="ChatCtrl" ng-include src="'chat/index.tpl.html'"></div>
+	<ul class="to-do" ng-class="{show: toDo.length > 0 }">
+		<li class="to-do-title"><h4>To Do for this Section</h4></li>
+		<li ng-repeat="to in toDo">{{ to }}</li>
+	</ul>
+	<!-- C directive backToTop -->
+	<div class="back-to-top" ng-class="{hidden: hidden, notificationsOpen: notificationsOpen, menuOpen: menuOpen}">
+		<a ng-click="backToTop()" title="Back to top"><span class="icon-arrow-up"></span></a>
+	</div>
+</div>

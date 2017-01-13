@@ -1,0 +1,51 @@
+<div class="modal-window">
+    <div class="modal-header">
+		<h2>Login.</h2>
+	</div>
+	<form 
+		class="modal-form" 
+		name="loginForm" 
+		action="/auth/local" 
+		method="post"
+	>
+		<div class="row">
+		    <div class="large-12 columns">
+		    	<input 
+		    		type="text" 
+		    		id="inputEmail" 
+		    		name="identifier" 
+		    		placeholder="Email" 
+		    		force-focus="true" 
+		    		required
+		    		ng-class="{error: loginForm.identifier.$error.required && loginForm.identifier.$touched }"
+		    	/>
+		    	<input 
+		    		type="password" 
+		    		id="inputPassword" 
+		    		name="password" 
+		    		placeholder="Password"
+		    		required 
+		    		ng-class="{error: loginForm.password.$error.required && loginForm.password.$touched }"
+		    	/>
+		    	<input 
+		    		type="hidden"
+		    		name="refer"
+		    		value="{{ refer }}" 
+		    	/>
+		      	<button 
+		      		type="submit" 
+		      		class="sy-button modal-button" 
+		      	>
+		      		Sign In
+		    	</button>
+
+		    </div>
+		</div>
+	</form>
+	<div class="login-modal-footer">
+		<p>
+			<a ui-sref="register" ng-click="cancel()">I need to sign up</a> - <a >I forgot my password</a>
+		</p>
+	</div>
+    <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
+</div>

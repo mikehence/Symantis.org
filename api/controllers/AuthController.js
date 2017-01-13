@@ -66,8 +66,10 @@ var AuthController = {
    * @param {Object} res
    */
   logout: function (req, res) {
+    //console.log(req);
+    //User.logout(req);
     req.logout();
-    res.redirect('/');
+    res.redirect('/home');
   },
 
   /**
@@ -118,18 +120,27 @@ var AuthController = {
    * @param {Object} res
    */
   callback: function (req, res) {
+    //console.log(req);
     passport.callback(req, res, function (err, user) {
+
       req.login(user, function (err) {
         // If an error was thrown, redirect the user to the login which should
         // take care of rendering the error messages.
         if (err) {
+          console.log(err);
           res.redirect('/login');
         }
         // Upon successful login, send the user to the homepage were req.user
         // will available.
         else {
-        	console.log('currently logged in user is: ' + req.user.username);
-          res.redirect('/');
+        	console.log('currently logged in user is: ' + req.user.handle);
+          
+          if(req.param('refer')){
+            res.redirect(req.param('refer'));
+          }else{
+            res.redirect('/me');
+          }
+
         }
       });
     });

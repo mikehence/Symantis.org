@@ -1,0 +1,44 @@
+.community-category-nav {
+	ul {
+		list-style: none;
+		float: left;
+		position: relative;
+		width: 100%;
+		li {
+			padding: rem-calc(8px) 0 rem-calc(8px) 0 !important;
+			margin: 0 !important;
+			line-height: 1;
+			float: left;
+			width: 100%;
+			position: relative;
+			a {
+				padding: 0;
+				margin: 0;
+				@include font-light(14px);
+				color: darken($light, 10%);
+				@include transition(100ms);
+				line-height: 1.4;
+				float: left;
+				&:hover {
+					color: $dark;
+				}
+				&.active {
+					border-left: 4px $primary-color solid;
+					color: $darkest;
+					padding-left: rem-calc(8px);
+				}
+			}
+		}
+	}
+}
+.community-push {
+	border-top: none !important; 
+	padding-top: rem-calc(34px) !important;
+}
+.bottom-article {
+	margin-top: rem-calc(100px);
+	margin-bottom: rem-calc(5px);
+	width:100%;
+	height: rem-calc(1px);
+	background-color: $dark;
+}

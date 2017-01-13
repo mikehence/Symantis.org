@@ -1,0 +1,19 @@
+<input 
+	type="text"
+	id="inputLastName" 
+	name="lastName"
+	class="signup-input"
+	placeholder="Last Name" 
+	value=""
+	force-focus="true"
+	ng-model="registerData.lastName"
+	required
+	ng-shift-tab="prevStep('firstname')"
+	ng-enter="nextStep(registerForm.lastName, 'confirm')"
+>
+<div
+	ng-hide="registerForm.lastName.$error.required"
+	class="signup-prompt"
+>
+	<p>Press Enter to continue.</P>
+</div>

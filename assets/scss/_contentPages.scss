@@ -1,0 +1,362 @@
+
+$transtime: 500ms;
+
+.gr-container {
+	float: left;
+	width: 100%;
+	position: relative;
+	height: 100%;
+	padding-top: 0.5rem !important;
+}
+.gr-content {
+	float: left;
+	width: 100%;
+	position: relative;
+	height: 500px;
+	.gr-top-rule {
+		display: block;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		left: 60%;
+		height: 1px;
+		background-color: $light;
+	    @include tranSpec(opacity,$transtime);
+	    @include tranSpec(left,$transtime);
+	}
+	.gr-bottom-rule {
+		display: block;
+		width: 100px;
+		position: absolute;
+		bottom: 0;
+		right: 60%;
+		height: 1px;
+		background-color: $light;
+		z-index: 13;
+		@include tranSpec(opacity,$transtime);
+	    @include tranSpec(right,$transtime);
+	}
+	.gr-text {
+		position: absolute;
+		left: 0;
+		height: 100%;
+		width: 40%;
+		display: table;
+		z-index: 10;
+		@include tranSpec(left,$transtime);
+		.gr-text-inner {
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+			h3 {
+				@include font-semi(rem-calc(18px));
+				color: $dark;
+				line-height: 1.6;
+				padding-bottom: 10px;
+				&.with-sub {
+					padding-bottom: 0;
+				}
+				a {
+					font-family: 'open_sanssemibold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+				}
+			}
+			h4 {
+				@include font-italic(rem-calc(14px));
+				color: $gray;
+				line-height: 1;
+			}
+			p {
+				@include font-light(rem-calc(16px));
+				color: darken($gray, 8%);
+			}
+			.text-large {
+				font-size: rem-calc(24px);
+			}
+			a {
+				font-family: 'open_sansregular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+		}
+	}
+	.gr-cover {
+		position: absolute;
+		width: 37%;
+		height: 100%;
+		left: 0;
+		z-index: 9;
+		background-color: white;
+		@include transition($transtime);
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 99.4%;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 500px 200px 0 0;
+			border-color: white transparent transparent transparent;
+		}
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 100%;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 500px 200px 0 0;
+			border-color: $light transparent transparent transparent;
+		}
+	}
+	.gr-image {
+		position: absolute;
+		width: 60%;
+		max-width: 500px;
+		right: 0;
+		height: 100%;
+		display: table;
+		z-index: 8;
+	    @include tranSpec(right,$transtime);
+		.gr-image-inner {
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+			img {
+				width: 100%;
+				height: auto;
+				max-width: 100%;
+			}
+		}
+	}
+}
+.gr-content-reverse {
+	float: left;
+	width: 100%;
+	position: relative;
+	height: 500px;
+	.gr-top-rule {
+		display: block;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		right: 60%;
+		height: 1px;
+		background-color: $light;
+		@include tranSpec(opacity,$transtime);
+	    @include tranSpec(right,$transtime);
+	}
+	.gr-bottom-rule {
+		display: block;
+		width: 100px;
+		position: absolute;
+		bottom: 0;
+		left: 60%;
+		height: 1px;
+		background-color: $light;
+		z-index: 13;
+		@include tranSpec(opacity,$transtime);
+	    @include tranSpec(left,$transtime);
+	}
+	.gr-text {
+		position: absolute;
+		right: 0;
+		height: 100%;
+		width: 40%;
+		display: table;
+		z-index: 10;
+	    @include tranSpec(right,$transtime);
+		.gr-text-inner {
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+			h3 {
+				@include font-semi(rem-calc(18px));
+				color: $dark;
+				line-height: 1.6;
+				padding-bottom: 10px;
+				&.with-sub {
+					padding-bottom: 0;
+				}
+				a {
+					font-family: 'open_sanssemibold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+				}
+			}
+			h4 {
+				@include font-italic(rem-calc(14px));
+				color: $gray;
+				line-height: 1;
+			}
+			h2 {
+				@include font-semi(rem-calc(24px));
+				color: $dark;
+				a {
+					font-family: 'open_sanssemibold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+				}
+			}
+			p {
+				@include font-light(rem-calc(16px));
+				color: darken($gray, 8%);
+			}
+			.text-large {
+				font-size: rem-calc(24px);
+			}
+			a {
+				font-family: 'open_sansregular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+		}
+	}
+	.gr-cover {
+		position: absolute;
+		width: 37%;
+		height: 100%;
+		right: 0;
+		z-index: 9;
+		background-color: white;
+		@include transition($transtime);
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 99.4%;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 200px 500px 0;
+			border-color: transparent white transparent transparent;
+		}
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 100%;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 200px 500px 0;
+			border-color: transparent $light transparent transparent;
+		}
+	}
+	.gr-image {
+		position: absolute;
+		width: 60%;
+		max-width: 500px;
+		left: 0;
+		height: 100%;
+		display: table;
+		z-index: 8;
+	    @include tranSpec(left,$transtime);
+		.gr-image-inner {
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+			img {
+				width: 100%;
+				height: auto;
+				max-width: 100%;
+			}
+		}
+	}
+}
+.gr-statement-blank {
+	float: left;
+	width: 100%;
+	position: relative;
+	padding: 10px;
+	text-align: center;
+	border-top: 1px $light solid;
+	border-bottom: 1px $light solid;
+}
+.gr-statement {
+	float: left;
+	width: 100%;
+	position: relative;
+	padding: 80px 0 80px 0;
+	text-align: center;
+	border-top: 1px $light solid;
+	border-bottom: 1px $light solid;
+	background-color: white;
+	z-index: 15;
+	margin-top: -1px;
+	h2 {
+		@include font-semi(rem-calc(24px));
+		color: $dark;
+		a {
+			font-family: 'open_sanssemibold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+	}
+	p {
+		@include font-light(rem-calc(16px));
+		color: darken($gray, 8%);
+	}
+	img {
+		max-height: 100px;
+		width: auto;
+	}
+	&.top-statement {
+		text-align: left;
+		padding: 10px 0 30px 0;
+	}
+	a {
+		font-family: 'open_sansregular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+}
+.last-statement {
+	border-bottom: none;
+}
+.gr-top-p {
+	text-align: left !important;
+	padding: 20px 0px 60px 0px;
+	border-top: none;
+}
+.gr-second-p {
+	padding-top: 10px;
+}
+.w-bm {
+	margin-bottom: rem-calc(20px);
+}
+
+
+.gr-reveal:hover {
+	.gr-top-rule {
+		opacity: 0;
+		left: 40%;
+	}
+	.gr-bottom-rule {
+		opacity: 0;
+		right: 80%;
+	}
+	.gr-image {
+		right: -20px;
+	}
+	.gr-cover {
+		left: -80px;
+		opacity: 0;
+	}
+	.gr-text {
+		left: -20px;
+	}
+}
+.gr-reveal-reverse:hover {
+	.gr-top-rule {
+		opacity: 0;
+		right: 40%;
+	}
+	.gr-bottom-rule {
+		opacity: 0;
+		left: 80%;
+	}
+	.gr-image {
+		left: -20px;
+	}
+	.gr-cover {
+		right: -80px;
+		opacity: 0;
+	}
+	.gr-text {
+		right: -20px;
+	}
+}

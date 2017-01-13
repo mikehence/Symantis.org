@@ -1,0 +1,33 @@
+<section class="top-nav-left medium-3 large-2 large-offset-1 columns" ng-class="{open: menuOpen, navOpen: notificationsOpen}">
+	<a ui-sref="me" ui-sref-active="active"><span>{{ currentUser.at }}{{ currentUser.handle }} </span></a>
+</section>
+<section class="top-nav-mid medium-2 large-1 columns">
+	<a 
+		ui-sref="me.connections" 
+		ui-sref-active="active" 
+		ng-class="{active: $state.includes('me.connections')}"
+
+	>
+		<span>Connections</span>
+	</a>
+</section>
+<section class="top-nav-mid medium-2 large-1 columns">
+	<a 
+		ui-sref="me.manti" 
+		ui-sref-active="active"
+		ng-class="{active: $state.includes('me.manti')}" 
+		class="header-mid-center"
+	>
+		<span>Manti</span>
+	</a>
+</section>
+<section class="top-nav-mid medium-2 large-1 columns">
+	<a 
+		ui-sref="me.information" 
+		ui-sref-active="active"
+		ng-class="{active: $state.includes('me.information')}"
+	>
+		<span>Information</span>
+	</a>
+</section>
+				

@@ -30,24 +30,40 @@ module.exports.routes = {
     controller: 'HomeController',
     action: 'index'
   },
-
-  'get /login': 'AuthController.login',
+  
   'get /logout': 'AuthController.logout',
+  /*
+  'get /login': 'AuthController.login',
   'get /register': 'AuthController.register',
+  */
 
   'post /auth/local': 'AuthController.callback',
   'post /auth/local/:action': 'AuthController.callback',
 
 
   // Custom routes here...
+    //**Tag Autocompletes
+    'get /api/tags/:tag': 'TagController.autoCompleteTags',
+    
+    'get /api/system/commits': 'UserController.getRecentCommits',
 
     /**
      * User routes
      */
-    'get /api/user': 'UserController.getAll',
+    'get /api/user': 'UserController.find',
     'get /api/user/:id': 'UserController.getOne',
-    'post /api/user': 'UserController.create',
 
+    'get /api/user/handle/:handle': 'UserController.getByHandle',
+    'get /api/user/email/match/:email': 'UserController.checkEmail',
+    'get /api/user/handle/match/:handle': 'UserController.checkHandle',
+    'post /api/user': 'UserController.create',
+    'post /api/user/update': 'UserController.update',
+    'put /api/user/:id': 'UserController.update',
+    'post /api/user/connect': 'UserController.connect',
+    'post /api/user/status': 'UserController.updateStatus',
+
+
+    'get /api/connection/user/:id': 'ConnectionController.getAllForUser',
   /**
      * Message routes
      *
@@ -57,13 +73,285 @@ module.exports.routes = {
     'post /api/message': 'MessageController.create',
     'delete /api/message/:id': 'MessageController.destroy',
 
+    /**
+     * Query routes
+     *
+     */
+    'get /api/query': 'QueryController.find',
+    'get /api/query/:id': 'QueryController.findOne',
+    'get /api/query/like/:title': 'QueryController.getLike',
+    
+    'post /api/query': 'QueryController.create',
+    'post /api/query/update': 'QueryController.update',
+    'post /api/query/response': 'QueryController.addResponse',
+    'post /api/query/update/views': 'QueryController.updateViews',
+    'put /api/query/:id': 'QueryController.update',
+    'delete /api/query/:id': 'QueryController.destroy',
 
-  // If a request to a URL doesn't match any of the custom routes above, it is matched 
-  // against Sails route blueprints.  See `config/blueprints.js` for configuration options
-  // and examples.
+    'get /api/response': 'ResponseController.find',
+    'get /api/response/:id': 'ResponseController.findOne',
+    'get /api/response/query/:query': 'ResponseController.getAllForQuery',
+    'get /api/response/reply/:id': 'CommentController.getOne',
 
-  'get /home': 'HomeController.index',
-  'get /about': 'HomeController.index',
-  'get /messages': 'HomeController.index'
+    'post /api/response': 'ResponseController.create',
+    'put /api/response/:id': 'ResponseController.update',
+    'post /api/response/reply': 'ResponseController.addReply',
+    'post /api/response/solve': 'ResponseController.addSolution',
+
+    'get /api/comment': 'CommentController.find',
+    'get /api/comment/:id': 'CommentController.findOne',
+    'put /api/comment/:id': 'CommentController.update',
+    'post /api/comment': 'CommentController.create',
+
+    'get /api/creator/demo': 'CreatorController.subscribeToDemo',
+    'post /api/creator/demo/drag': 'CreatorController.dragBlock',
+    'post /api/creator/demo/resize': 'CreatorController.resizeBlock',
+  
+
+    /**
+     * Wordpress routes
+     *
+     */
+    'get /api/news': 'WordpressController.getPosts',
+    'get /api/news/:id': 'WordpressController.getPost',
+    'get /api/article/:id': 'WordpressController.getPost',
+
+    // If a request to a URL doesn't match any of the custom routes above, it is matched 
+    // against Sails route blueprints.  See `config/blueprints.js` for configuration options
+    // and examples.
+
+  //Handle "/home" queries 
+  'get /home': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /home/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/about" queries
+  'get /about': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /about/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/about" queries
+  'get /more': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /more/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/messages" queries
+  'get /messages': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /messages/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  
+  //Handle "/kitchen" queries "testing sitewide designs"
+  'get /kitchen': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /kitchen/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  
+  //Handle "/template" queries "testing sitewide designs"
+  'get /template': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /template/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/chat" queries "Chat Section"
+  'get /chat': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /chat/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  
+  //Handle "/community" queries "Community Section, News, Queries"
+  'get /community': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /community/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/profile" queries
+  'get /profile': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /profile/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /@*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /@:handle': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /@:handle/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /:org@:handle': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /:org@:handle/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+
+
+  //Handle "/help" queries "Help Section"
+  'get /help': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /help/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  
+  
+  //Handle "/creator" queries "Creator App"
+  'get /docs': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /docs/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/creator" queries "Creator App"
+  'get /terms': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /terms/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  //Handle "/creator" queries "Creator App"
+  'get /privacy': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /privacy/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  //Handle "/creator" queries "Creator App"
+  'get /currency': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /currency/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/creator" queries "Creator App"
+  'get /roadmap': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /roadmap/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+
+  //Handle "/start" queries "Getting Started"
+  'get /start': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /start/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/creator" queries
+  'get /creator': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /creator/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/search" queries
+  'get /search': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /search/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/me" queries
+  'get /me': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /me/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/login" queries "Login"
+  'get /login': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /login/*': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+
+  //Handle "/register" queries
+  'get /register': {
+    controller: 'HomeController',
+    action: 'index'
+  },
+  'get /register/*': {
+    controller: 'HomeController',
+    action: 'index'
+  }
+
 
 };

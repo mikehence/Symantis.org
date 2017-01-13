@@ -35,36 +35,59 @@
 -->
 <html>
   <head>
-    <title>Page Not Found</title>
-    <link href='http://sailsjs.org/styles/fonts.css' rel='stylesheet'/>
-    <style>
-      /* Styles included inline since you'll probably be deleting this page anyway */
-      html,body{text-align:left;font-size:1em}html,body,img,form,textarea,input,fieldset,div,p,div,ul,li,ol,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,code{margin:0;padding:0}ul,li{list-style:none}img{display:block}a img{border:0}a{text-decoration:none;font-weight:normal;font-family:inherit}*:active,*:focus{outline:0;-moz-outline-style:none}h1,h2,h3,h4,h5,h6,h7{font-weight:normal;font-size:1em}.clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden}.fourohfour .ocean{background:url('http://sailsjs.com/images/waves.png') #0c8da0 no-repeat center 0;height:315px}.fourohfour .ocean img{margin-right:auto;margin-left:auto}.fourohfour .waves{display:block;padding-top:25px;margin-right:auto;margin-left:auto}.fourohfour .main{display:block;margin-top:90px}.fourohfour .logo{width:150px;margin-top:3.5em;margin-left:auto;margin-right:auto}.fourohfour .fishy{display:block;padding-top:27px}.fourohfour .help{padding-top:2em}.fourohfour h1{font-family:"Open Sans","Myriad Pro",Arial,sans-serif;font-weight:bold;font-size:1.7em;color:#001c20;text-align:center}.fourohfour h2{font-family:"Open Sans","Myriad Pro",Arial,sans-serif;font-weight:300;font-size:1.5em;color:#001c20;text-align:center}.fourohfour p{font-family:"Open Sans","Myriad Pro",Arial,sans-serif;font-size:1.25em;color:#001c20;text-align:center}.fourohfour a{color:#118798}.fourohfour a:hover{color:#b1eef7}
-    </style>
+    <title>404: Page Not Found</title>
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/min/production.css">
+    <!--STYLES END-->
+
   </head>
   <body>
 
-    <div class="fourohfour">
-      <div class="ocean">
-        <img class="fishy" src="http://sailsjs.org/images/fishy4.png">
+    <div class="container fourohfour">
+      <div class="row fluid-row">
+        <div class="small-12 columns">
+          <div class="big-clock">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 1280 800" enable-background="new 0 0 1280 800" xml:space="preserve">
+              <circle fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="640.2" cy="399.9" r="375"/>
+              <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="640" y1="54" x2="640" y2="132"/>
+              <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="640" y1="667" x2="640" y2="745"/>
+              <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="294" y1="407" x2="372" y2="407"/>
+              <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="907" y1="407" x2="985" y2="407"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="835.6" y1="121.1" x2="817.2" y2="148"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="463.4" y1="656.4" x2="445" y2="683.3"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="942.4" y1="248.1" x2="913.7" y2="263.5"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="364.9" y1="550.9" x2="336.2" y2="566.3"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="341.6" y1="237.2" x2="370" y2="253"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="908.4" y1="559.4" x2="936.8" y2="575.2"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="458.4" y1="119.4" x2="476.3" y2="146.5"/>
+              <line fill="none" stroke="#000000" stroke-miterlimit="10" x1="812.3" y1="667" x2="830.2" y2="694.1"/>
+              <line fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="640" y1="407" x2="804.1" y2="507.2"/>
+              <line fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="640.2" y1="411.5" x2="757.3" y2="188"/>
+            </svg>
+            <p>Sorry, what was the time?</p>
+          </div>
+        </div>
       </div>
-
-      <div class="main">
-        <h1>
-          Something's fishy here.
-        </h1>
-        <h2> 
-          The page you were trying to reach doesn't exist.
-        </h2>
-        <p class="help">
-          <a href="http://en.wikipedia.org/wiki/HTTP_404">Why</a> might this be happening?
-        </p>
-      </div>
-        
-      <div class="logo">
-        <a href="http://sailsjs.org">
-          <img src="http://sailsjs.org/images/logo.png">
-        </a>
+      <div class="row fluid-row four-bottom">
+        <div class="small-6 columns four-hint">
+          <p>Try refresh the page or click on one of these links</p>
+        </div>
+        <div class="small-6 columns wiki-link">
+          <p><a href="http://en.wikipedia.org/wiki/HTTP_404">Why</a> might this be happening?</p>
+        </div>
+        <div class="small-12 columns four-bottom-menu">
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/start">Get Started</a></li>
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="/community">Community</a></li>
+            <li><a href="/creator">Creator App</a></li>
+            <li><a href="/more">More</a></li>
+            <li class="four-logo"><p>sy.</p></li>
+          </ul>
+        </div>
       </div>
     </div>
 

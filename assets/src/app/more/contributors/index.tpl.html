@@ -1,0 +1,51 @@
+
+<div id="heading-row" class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns heading-left">
+	</section>
+    <section class="medium-9 large-8 columns medium-offset-3 large-offset-3 sub-heading">
+        <h1><a href="/more/contributors">The Symantis Team</a></h1>
+    </section>
+    <section class="medium-0 large-1 columns heading-right">
+	</section>
+</div>
+<div class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns main-left about-left">
+		<div class="wrapper" ui-view="leftside">
+
+    	<!-- Section for main left header -->
+        </div>
+	</section>
+	<section class="medium-9 large-8 large-offset-3 medium-offset-3 columns main-center">
+		<header class="main-header">
+		</header>
+
+		<div class="main-content team-header">
+			<article class="team-statement">
+				<h2>Firstly, a big thank you to all the amazing contributors.</h2>
+				<p>Symantis is an open-source, socially driven enterprise, meaning without its community it simply wouldn't work. We would like this opportunity to thank everyone that has contributed and made Symantis what it is. To find out more about our contributors head over to <a ui-sref="me.connections">Connections</a> and search contributors. If you haven't got an account you will need to <a ui-sref="register">Sign up</a> first.</p>
+			</article>
+		</div>
+
+		<div class="main-content team-header">
+			<article class="rc-statement w-bm">
+				<h2>Recent Contributors.</h2>
+			</article>
+		</div>
+		<div 
+            masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".tile", "gutter": ".gutter-sizer" }' 
+            class="board-container" 
+            ui-view="board"
+        >
+        
+
+        </div>
+
+	</section>
+
+	<section class="medium-0 large-1 columns main-right">
+        <header class="right-header">
+        </header>
+        <div class="right-content">
+        </div>
+    </section>
+</div>

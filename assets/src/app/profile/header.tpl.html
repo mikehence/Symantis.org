@@ -1,0 +1,37 @@
+<section class="top-nav-left medium-3 large-2 large-offset-1 columns" ng-class="{open: menuOpen, navOpen: notificationsOpen}">
+	<!-- needs to be a link to the current users profile -->
+	<a 
+		ui-sref="profile.view"
+		ui-sref-active="active"
+	>
+	<span>{{ user.at || '@' }}{{ user.handle }}</span></a>
+</section>
+<section class="top-nav-mid medium-2 large-1 columns">
+	<a 
+		ui-sref="profile.view.connections" 
+		ui-sref-active="active"
+		ng-class="{active: $state.includes('profile.view.connections')}"
+	>
+		<span>Connections</span>
+	</a>
+</section>
+<section class="top-nav-mid text-center medium-2 large-1 columns">
+	<!-- Section for the user to browse profiles, could be suggested profiles -->
+	<a 
+		ui-sref="profile.view.manti" 
+		ui-sref-active="active" 
+		ng-class="{active: $state.includes('profile.view.manti')}"
+	>
+		<span>Manti</span>
+	</a>
+</section>
+<section class="top-nav-mid medium-2 large-1 columns">
+	<a 
+		ui-sref="profile.view.information" 
+		ui-sref-active="active" 
+		ng-class="{active: $state.includes('profile.view.information')}"
+	>
+		<span>Information</span>
+	</a>
+</section>
+				

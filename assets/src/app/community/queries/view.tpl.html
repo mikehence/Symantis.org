@@ -1,0 +1,406 @@
+
+<div ng-show="loadingSection" class="preloader-container">
+    <!-- loadingSection is a variable defined in the $scope -->
+	<div class="preloader">
+    </div>
+</div>
+<div class="medium-12 columns query-page fade" ng-class="{in: !loadingSection}">
+	<div class="query-post">
+		<section class="querie-header">
+		    <div class="querie-header-title">
+		        <h3>
+		        	<a ui-sref="community.queries.view({id: query.id, title: query.clean })">
+		        		{{ query.title || query.clean }}
+		        	</a>
+		        </h3>
+		        <a 
+		        	ng-if="query.author.id == currentUser.id"
+		        	ui-sref="community.queries.edit({ id: query.id })"
+		        	class="edit-query"
+		        	title="Edit Query"
+		        >
+		        	<span class="icon-pencil"></span>
+		        </a>
+		    </div>
+		</section>
+		<section class="query-content">
+			<div class="query-content-main">
+				<markdown ng-model="query.query" strip="true" extensions="github, table">
+				</markdown>
+		        <div class="image-thumbs" ng-show="query.imgs">
+		        	<div class="thumbnail-container" ng-repeat="img in query.imgs">
+		        		<a title="View {{ img.name }}">
+		                    <img ng-src="{{ img.src }}" />
+		                </a>
+		        	</div>
+			    </div>
+			</div>
+		</section>
+		<section class="query-footer">
+			<div class="querie-tags">
+	            <ul>
+	                <li class="tag {{ tag.privillege }}-tag" ng-repeat="tag in query.tags track by $index">
+	                    <a ui-sref="community.tags.view({ tag:tag.text })" title="View content tagged with {{ tag.text }}">
+	                        <p>{{ tag.text }}</p>
+	                    </a>
+	                </li>
+	            </ul>
+			</div>
+	        <div class="query-details">
+	        	<div class="query-details-pic author-{{ query.author.status }} generate-image" signature="{{ query.author.signature }}"></div>
+                <p class="query-details-by">
+                    <a ui-sref="profile.view({ handle: query.author.handle })">
+                        {{ query.author.firstName }} {{ query.author.lastName }}
+                    </a>
+                </p>
+                <p class="query-details-on">
+                    <span>
+                        {{ query.date | date }}
+                    </span>
+                </p>
+            </div>
+		</section>
+	</div>
+	<div 
+		class="comments-head" 
+	>
+		<h4 class="number-comments">
+			<a 
+				ng-class="{active: comments.selected}" 
+				ng-click="comments.selected = true"
+			>
+				{{ query.responses.length || 0 }} Response<span ng-show="query.responses.length != 1">s</span>
+			</a>
+		</h4>
+		<h4>
+			<a 
+				ng-show="currentUser"
+				ng-click="comments.selected = false" 
+				ng-class="{active: !comments.selected}"
+				title="New Response"
+			>
+				New
+			</a>
+			<span ng-show="!currentUser">
+				<a ng-click="loginModal()">Login</a>
+			</span>
+		</h4>
+		<p>
+			<a dropdown-toggle="#querie-response-sort-menu">Sort by <span class="icon-vote-down icon"></span></a>
+		</p>
+		<div class="sort-container querie-response-sort" id="querie-response-sort-menu">
+	        <ul class="sort-menu">
+	            <li><a class="active">Most Recent <span class="icon-check icon"></span></a></li>
+	            <li><a >Most Votes <span class="icon-check icon"></span></a></li>
+	            <li><a >Best Anwser <span class="icon-check icon"></span></a></li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="new-response" ng-show="currentUser && !comments.selected">
+		<form 
+			class="new-response-form"
+			name="newResponseForm" 
+		>
+			<p class="new-response-title">
+				Respond as 
+	        	<a ui-sref="profile.view({handle: currentUser.handle})">
+	        		{{ currentUser.firstName }} {{ currentUser.lastName }}
+	        	</a>
+	        </p>
+	        
+	        <div 
+				class="response-preview comment" 
+				ng-init="newResponse.preview = false"
+				ng-show="newResponse.preview"
+			>
+				<div class="comment-left">
+					<div 
+						class="comment-pic generate-image" 
+						signature="{{ currentUser.signature }}"
+					>
+					</div>
+					<p class="response-voting">
+						<a class="vote-up">
+							<span class="icon-vote-up"></span>
+						</a>
+						<span class="response-votes">0</span>
+						<a class="vote-down">
+							<span class="icon-vote-down"></span>
+						</a>
+						<!-- placeholder icon -->
+						<a title="Mark as best solution">
+							<span class="icon-check response-possible-favourite"></span>
+						</a>
+					</p>
+				</div>
+
+				<div class="comment-content">
+					<div class="comment-details">
+			            <p>
+			            	<a ui-sref="me">
+			            		{{ currentUser.firstName }} {{ currentUser.lastName }}
+			            	</a>
+			            	&middot;
+			            	<span>{{ todaysDate | date }}</span>
+			            </p>
+			        </div>
+					<markdown ng-model="newResponse.response" strip="true" extensions="github, table">
+						Add your response!
+					</markdown>
+					<!-- <div class="image-thumbs" ng-show="response.imgs">
+			        	<div class="thumbnail-container" ng-repeat="img in response.imgs">
+			        		<a title="View {{ img.name }}">
+			                    <img ng-src="{{ img.src }}" />
+			                </a>
+			        	</div>
+				    </div> -->		
+				</div>
+	        </div>
+
+	        <div ng-hide="newResponse.preview">
+		        <div class="new-response-inner">
+		        	<div class="response-options">
+				        <ul>
+				        	<li class="response-options-edit">
+				        		<a title="Insert Text" class="selected">
+				        			<span class="icon-pencil"></span>
+				        		</a>
+				        	</li>
+					        <li class="response-options-link">
+								<a title="Insert Link">
+				        			<span class="icon-link"></span>
+								</a>
+				        	</li>
+				        	<li class="response-options-image">
+				        		<a title="Insert Image">
+				        			<span class="icon-photo"></span>
+				        		</a>
+				        	</li>
+				        	<li class="response-options-code">
+				        		<a title="Insert Code Snippet">
+				        			<span class="icon-code-snippet"></span>
+				        		</a>
+				        	</li>
+				        </ul>
+				    </div>
+					<textarea 
+						name="newResponse" 
+						placeholder="Response..."
+						ng-model="newResponse.response"
+						required
+					></textarea>
+				</div>
+			</div>
+			<div class="new-response-post">
+				<p>
+					<a 
+						class="sy-button" 
+						ng-click="submitResponse(newResponseForm)"
+					>
+						Post
+					</a>
+				</p>
+			</div>
+			<div class="new-response-preview">
+				<p>
+					<a 
+						ng-click="newResponse.preview = !newResponse.preview"
+						class="sy-button"
+					>
+						<span 
+							ng-hide="newResponse.preview"
+						>
+							Preview
+						</span>
+						<span 
+							ng-show="newResponse.preview"
+						>
+							Edit
+						</span>
+					</a>
+				</p>
+			</div>
+		</form>
+	</div>
+
+	
+
+	<div
+		class="comment animate-repeat" 
+		ng-repeat="response in query.responses | orderBy : 'votes' : true "
+		ng-class="{ solution: query.solved == response.id }"
+		ng-attr-id="{{ response.id }}"
+	>
+		<div class="comment-left">
+			<div 
+				class="comment-pic generate-image" 
+				signature="{{ response.author.signature }}"
+			>
+			</div>
+			<p class="response-voting">
+				<a  
+					class="vote-up" 
+					ng-click="upVote(response)"
+					title="Up Vote this response"
+				>
+					<span class="icon-vote-up"></span>
+				</a>
+				<span class="response-votes">
+					{{ response.votes | number }}
+				</span>
+				<a 
+					class="vote-down" 
+					ng-click="downVote(response)"
+					title="Down Vote this response"
+				>
+					<span class="icon-vote-down"></span>
+				</a>
+				<!-- placeholder icon -->
+				<span class="icon-check response-favourite" ng-show="query.solved == response.id"></span>
+				<a 
+					ng-show="query.author.id == currentUser.id &&  query.solved != response.id" 
+					title="Mark as best solution"
+					ng-click="sumbitSolution(response.id)"
+				>
+					<span class="icon-check response-possible-favourite"></span>
+				</a>
+			</p>
+		</div>
+
+		<div class="comment-content">
+			<div class="comment-details">
+	            <p>
+	            	<a ui-sref="profile.view({ handle: response.author.handle })">
+	            		{{ response.author.firstName }} {{ response.author.lastName }}
+	            	</a>
+	            	&middot;
+	            	<span>{{ response.date | date }}</span>
+	            </p>
+	        </div>
+			<markdown 
+				hashtagify 
+			    term-click="tagTermClick($event)" 
+			    user-click="tagUserClick($event)" 
+				class="comment-text" 
+				ng-model="response.response" 
+				strip="true" 
+				extensions="github, table"
+			>
+			</markdown>
+			<div class="image-thumbs" ng-show="response.imgs">
+	        	<div class="thumbnail-container" ng-repeat="img in response.imgs">
+	        		<a title="View {{ img.name }}">
+	                    <img ng-src="{{ img.src }}" />
+	                </a>
+	        	</div>
+		    </div>		
+		</div>
+
+		<div class="replies" ng-init="replies.open = false" >
+			<div 
+				ng-show="replies.open"
+				class="reply slideToggle animate-repeat" 
+				ng-repeat="reply in response.replies"
+			>
+				<div class="reply-push">
+					<div class="icon-indent icon">
+					</div>
+				</div>
+				<div class="reply-left">
+					<div 
+						class="reply-pic generate-image" 
+						signature="{{ reply.author.signature }}"
+					>
+					</div>
+				</div>
+				<div class="reply-content">
+					<div class="reply-details">
+			            <p>
+			            	<a ui-sref="profile.view({handle: reply.author.handle})">
+			            		{{reply.author.firstName}} {{reply.author.lastName}}
+			            	</a>
+			            	&middot;
+			            	<span>{{ reply.date | date }}</span>
+			            </p>
+			        </div>
+					<p 
+						hashtagify 
+					    term-click="tagTermClick($event)" 
+					    user-click="tagUserClick($event)"
+						class="reply-text"
+					>{{reply.comment}}</p>
+			    </div>
+			</div>
+			<div class="new-comment slideToggle" ng-show="currentUser && replies.open">
+				<!-- <div class="new-comment-left">
+					<div 
+						class="reply-pic generate-image" 
+						signature="{{ currentUser.signature }}"
+					>
+					</div>
+				</div> -->
+				<form 
+					ng-submit="submitReply(response.id, response.newReply)"
+					class="new-comment-form"
+				>
+					<p>
+			        	<a ui-sref="profile.view({handle: currentUser.handle})">
+			        		{{ currentUser.firstName }} {{ currentUser.lastName }}
+			        	</a>
+			        </p>
+					<textarea 
+						name="newReply" 
+						ng-model="response.newReply"
+						placeholder="Add Reply..."
+						required
+					></textarea>
+					
+					<a ng-click="submitReply(response.id, response.newReply)">
+						<div class="new-comment-submit">
+							<span class="icon-plus"></span>
+						</div>
+					</a>
+				
+				</form>
+			</div>
+		</div>
+		
+		<div class="reply-toggle">
+			<p>
+				<a
+					title="Edit Response"
+					ng-show="response.author.id == currentUser.id"
+				>	
+					<span>Edit Reponse &middot;</span>
+				</a>
+				<a 
+					ng-click="replies.open = !replies.open"
+					title="Toggle Replies"
+				>
+					<span ng-show="replies.open">Hide</span>
+
+					<span ng-hide="replies.open">
+						<span ng-show="response.replies.length && currentUser">Add/View Replies ({{ response.replies.length }})</span>
+						<span ng-show="!response.replies.length && currentUser">Reply</span>
+						<span ng-show="response.replies.length > 0 && !currentUser">View Replies ({{ response.replies.length }})</span>
+					</span>
+				</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="view-more-comments" ng-show="query.response.length > 12">
+		<a >
+			<p>More Responses</p>
+		</a>
+	</div>
+	<div ng-show="comments.selected && (!query.responses || query.responses.length == 0)">
+		<p>Be the first to respond!</p>
+	</div>
+	<div class="response-noUser" ng-show="!currentUser">
+		<h4><a ui-sref="register">Sign up</a> or <a ng-click="loginModal()">Login</a> to Respond</h4>
+	</div>
+
+</div>
+

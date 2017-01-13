@@ -1,0 +1,286 @@
+// Smartphones (portrait and landscape) -----------
+@media only screen 
+and (min-device-width : rem-calc(320px)) 
+and (max-device-width : rem-calc(480px)) {
+
+}
+
+// Smartphones (landscape) ----------- 
+@media only screen 
+and (min-width : rem-calc(321px)) {
+
+
+}
+
+// Smartphones (portrait) ----------- 
+@media only screen 
+and (max-width : rem-calc(320px)) {
+
+
+}
+
+// iPads (portrait and landscape) ----------- 
+@media only screen 
+and (min-device-width : rem-calc(768px)) 
+and (max-device-width : rem-calc(1024px)) {
+	.search-result {
+		.search-result-category {
+			a {
+				h2 {
+					font-size: rem-calc(8px);
+				}
+			}
+		}
+	}
+
+}
+
+// iPads (landscape) ----------- 
+@media only screen 
+and (min-device-width : rem-calc(768px)) 
+and (max-device-width : rem-calc(1024px)) 
+and (orientation : landscape) {
+
+
+}
+
+// iPads (portrait) ----------- 
+@media only screen 
+and (min-device-width : rem-calc(768px)) 
+and (max-device-width : rem-calc(1024px)) 
+and (orientation : portrait) {
+
+
+}
+// iPads & below ----------- 
+@media only screen 
+and (max-width : rem-calc(1024px)) {
+	.top-nav{
+		.top-nav-container {
+			ul {
+				.top-nav-large-right {
+					display:none;
+				}
+			}
+		}
+	}
+	.sitenav{
+		background-color: $darkest;
+		.trident{
+			fill: white;
+		}
+		.sitenav-inner{
+			background-color: none;
+		}
+	}
+	.top-nav {
+		.top-nav-container {
+			.top-nav-rule-cont {
+				padding-left: 0;
+				padding-right: 0;
+			}
+			.top-nav-rule {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	.top-nav {
+		.top-nav-container {
+			.row.fluid-row {
+				.top-nav-left {
+					padding-left: 2.2rem;
+					padding-left: 2.2rem;
+				}
+				.top-nav-right {
+					padding-right: 0;
+					margin-right: 0;
+					.top-nav-userOnline {
+						.top-nav-name {
+							//padding-right: rem-calc(3px);
+						}
+						.top-nav-messages {
+							//margin-left: rem-calc(3px);
+						}
+						.top-nav-settings {
+							//margin-left: rem-calc(3px);
+						}
+					}
+				}
+			}
+		}
+	}
+	.news-post {
+		.news-post-date {
+			display: none;
+		}
+		.news-post-content {
+			border-left: none;
+			width: 100%;
+		}
+	}
+	.gr-reveal:hover {
+		.gr-cover {
+			left: -30px;
+		}
+	}
+	.gr-reveal-reverse:hover {
+		.gr-cover {
+			right: -30px;
+		}
+	}
+	.footer {
+		.footer-nav {
+			padding-left: 0;
+			&.right {
+				padding-right: 40px;
+			}
+		}
+		.footer-logo {
+			width: 40px;
+			margin-left: 0;
+			.footer-mantis {
+				display: none;
+			}
+		}
+	}
+	.settings-row {
+		.editable-option {
+			width: 200px;
+		}
+	}
+	.manti-pod-wrap {
+		width: 100%;
+	}
+	.mainmenu-container{
+		width: rem-calc(200px);
+		left: rem-calc(-200px);
+		transform: translateX(0);
+   		transform: translate3d(0, 0, 0);
+	    &.open {
+			transform: translate3d(200px, 0, 0);
+			transform: translateX(200px);
+		}
+		.mainmenu-toggle {
+			.btn-border {
+				right: rem-calc(7px);
+			}
+			.btn-container {
+				padding-left: rem-calc(9px);
+				//background-color: lighten($offWhite, 5%);
+			}
+		}
+	}
+	.profile-pod-wrap {
+		width: 100%;
+	}
+	.connections-pod-wrap {
+		width: 100%;
+	}
+}
+
+// Small Laptops and below ----------
+@media only screen 
+and (max-width : rem-calc(1224px)) {
+	.search-result {
+		.search-result-category {
+			a {
+				h2 {
+					font-size: rem-calc(10px);
+				}
+			}
+		}
+	}
+	.board-pod-wrap{
+		width: 50%;
+	}
+	.notifications-container {
+		width: rem-calc(250px);
+		top: 55px;
+	}
+	.sitenav-push {
+		&.notificationsOpen {
+			transform: translateX(0);
+	    	transform: translate3d(0, 0, 0);
+		}
+	}
+	.top-nav {
+	    &.notificationsOpen{
+	    	transform: translateX(0);
+	    	transform: translate3d(0, 0, 0);
+	    }
+	}
+	.mainmenu-container{
+		.mainmenu-toggle {
+			.btn-border {
+				right: rem-calc(7px);
+			}
+			.btn-container {
+				padding-left: rem-calc(9px);
+			}
+		}
+	}
+}
+
+// Laptops Only ----------
+@media only screen 
+and (min-width : rem-calc(1224px)) 
+and (max-height : rem-calc(880px)) {
+
+}
+
+// Desktops & Laptops & Above ----------- 
+@media only screen 
+and (min-width : rem-calc(1224px)) {
+
+}
+
+// Medium Screens -----------
+@media only screen 
+and (min-width : rem-calc(1024px))
+and (max-width : rem-calc(1560px)) {
+
+}
+
+// Large screens ----------- 
+@media only screen 
+and (min-width : rem-calc(1824px)) {
+	/*.search-result-category {
+		width: 10%;
+	}
+	.search-result-content {
+		width: 90%;
+	}*/
+	.connections-container {
+		.connections-individual {
+			.connections-message {
+				right: 20%;
+			}
+		}
+	}
+	.board-pod-wrap{
+		width: 25%;
+	}
+	.manti-pod-wrap {
+		width: 33.33%;
+	}
+	.profile-pod-wrap {
+		width: 33.33%;
+	}
+	/*.connections-pod-wrap {
+		width: 33.33%;
+	}*/
+}
+
+// Retina ----------- 
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	.sy-effect.sy-menu-open.blur .sitenav-push{
+		opacity:0.4;
+		-webkit-filter: none;
+	  	filter: none;
+	}
+
+}

@@ -1,0 +1,172 @@
+<div class="medium-12 columns new-query-page">
+	<h3>New Query as <a ui-sref="me">{{ currentUser.firstName }} {{ currentUser.lastName }}</a></h3>
+	
+	<div class="query-page new-query">
+		<form class="new-query-form" name="newQueryForm">
+			<div 
+				ng-init="newQuery.preview = false"
+				ng-show="newQuery.preview"
+				class="query-post preview"
+			>
+				<section class="querie-header">
+				    <div class="querie-header-title">
+				        <h3>
+				        	<a>
+				        		{{ newQuery.title || "Add a query title"}}
+				        	</a>
+				        </h3>
+				    </div>
+				</section>
+				<section class="query-content">
+					<div class="query-content-main">
+						<markdown ng-model="newQuery.query" strip="true" extensions="github, table">
+						Add your querie!
+						</markdown>
+					</div>
+				</section>
+				<section class="query-footer">	
+					<div class="querie-tags">
+			            <ul>
+			                <li class="tag {{ tag.privillege }}-tag" ng-repeat="tag in newQuery.tags track by $index">
+			                    <a title="View content tagged with {{ tag.title }}">
+			                        <p>{{ tag.text }}</p>
+			                    </a>
+			                </li>
+			            </ul>
+					</div>
+					<div class="query-details">
+			        	<div class="query-details-pic generate-image" signature="{{ currentUser.signature }}"></div>
+		                <p class="query-details-by">
+		                    <a ui-sref="profile.view({ handle: currentUser.handle })">
+		                        {{ currentUser.firstName }} {{ currentUser.lastName }}
+		                    </a>
+		                </p>
+		                <p class="query-details-on">
+		                    <span>
+		                        {{ todaysDate | date }}
+		                    </span>
+		                </p>
+		            </div>
+				</section>
+			</div>
+			<div 
+				class="query-post preview"
+				ng-hide="newQuery.preview"
+			>
+				<input 
+					type="text" 
+					name="title"
+					placeholder="Query Title"
+					ng-model="newQuery.title"
+					required 
+				/>
+		        <div class="new-query-inner">
+		        	<div class="query-options">
+				        <ul>
+				        	<li class="query-options-edit">
+				        		<a title="Insert Text" class="selected">
+				        			<span class="text-icon">Aa</span>
+				        		</a>
+				        	</li>
+					        <li class="query-options-link">
+								<a title="Insert Link">
+				        			<span class="icon-link"></span>
+								</a>
+				        	</li>
+				        	<li class="query-options-image">
+				        		<a title="Insert Image">
+				        			<span class="icon-photo"></span>
+				        		</a>
+				        	</li>
+				        	<li class="query-options-code">
+				        		<a title="Insert Code Snippet">
+				        			<span class="icon-code-snippet"></span>
+				        		</a>
+				        	</li>
+				        </ul>
+				    </div>
+					<textarea 
+						name="newQuery" 
+						placeholder="Whats your Query?"
+						ng-model="newQuery.query"
+						required
+					></textarea>
+				</div>
+				<tags-input class="new-query-tag" ng-model="newQuery.tags">
+		            <auto-complete source="loadTags($query)"></auto-complete>
+		        </tags-input>
+	        </div>
+	        <div class="clearfix">
+		        <div 
+		        	class="image-thumbs" 
+		        	flow-init
+	      			flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+	      			flow-files-submitted="$flow.upload()"
+
+	      		>
+	      			<div 
+	      				class="drop" 
+	      				flow-drop="" 
+	      				ng-class="dropClass" 
+	      				ng-hide="newQuery.preview">
+					    <span 
+					    	class="button tiny" 
+					    	flow-btn=""
+					    >
+					    	Upload Image
+					    	<input type="file" multiple="multiple" style="visibility: hidden; position: absolute;"
+					    	>
+					    </span>
+					    <span 
+					    	class="button tiny" 
+					    	flow-btn="" 
+					    	flow-directory="" 
+					    	ng-show="$flow.supportDirectory"
+					    >
+					    	Upload Folder of Images<input type="file" multiple="multiple" webkitdirectory="webkitdirectory" style="visibility: hidden; position: absolute;">
+					    </span>
+					    <b>OR</b>
+					    Drag And Drop your images here
+					</div>
+			        <div class="thumbnail-container" ng-repeat="img in $flow.files">
+			        	<a>
+	      					<img ng-src="http://placehold.it/350x150" src="http://placehold.it/350x150" />
+	      				</a>
+			        </div>
+				</div>
+			</div>
+			<div class="query-category-selection">
+        		<select>
+        			<option>Select a category</option>
+        			<option value="1">General</option>
+        			<option value="1">Question</option>
+        			<option value="1">Update</option>
+        			<option value="1">Aesthetic</option>
+        			<option value="1">Advice</option>
+        			<option value="1">Graphic</option>
+        		</select>
+        	</div>
+			<div class="new-query-post">
+				<p>
+					<a 
+						class="sy-button"
+						ng-click="submitQuery(newQueryForm)"
+					>
+						Post
+					</a>
+				</p>
+			</div>
+			<div class="new-query-preview">
+				<p>
+					<a 
+						ng-click="newQuery.preview = !newQuery.preview"
+						class="sy-button" 
+					>
+						<span ng-hide="newQuery.preview">Preview</span>
+						<span ng-show="newQuery.preview">Edit</span>
+					</a>
+				</p>
+			</div>
+		</form>
+	</div>
+</div>

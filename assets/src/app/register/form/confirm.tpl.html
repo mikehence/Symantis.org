@@ -1,0 +1,58 @@
+<div class="confirm-page">
+	<p class="signup-confirm">Confirm?</p>
+	<ul class="signup-confirm-items">
+		<li>Name: <span>{{ registerData.firstName }} {{ registerData.lastName }}</span></li>
+		<li>Email: <span>{{ registerData.email }}</span></li>
+		<li>Username: <span>@{{ registerData.username }}</span></li>
+	</ul>
+	<input
+		type="hidden"
+		name="identifier"
+		ng-model="registerData.email"
+		value="{{registerData.email}}"
+		required
+	>
+	<input 
+		type="hidden" 
+		name="email" 
+		ng-model="registerData.email"
+		value="{{registerData.email}}"
+		required
+	>
+	<input 
+		type="hidden" 
+		name="username" 
+		ng-model="registerData.username"
+		value="{{registerData.username}}"
+		required
+	>
+	<input 
+		type="hidden" 
+		name="password" 
+		ng-model="registerData.password"
+		value="{{registerData.password}}"
+		required
+	>
+	<input 
+		type="hidden" 
+		name="firstName" 
+		ng-model="registerData.firstName"
+		value="{{registerData.firstName}}"
+		required
+	>
+	<input 
+		type="hidden" 
+		name="lastName" 
+		ng-model="registerData.lastName"
+		value="{{registerData.lastName}}"
+		required
+	>
+	<button 
+		class="button signup-button sy-button" 
+		type="submit"
+		ng-disabled ="registerForm.$invalid"
+	>
+		Sign Up
+	</button>
+
+</div>

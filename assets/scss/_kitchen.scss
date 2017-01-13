@@ -1,0 +1,426 @@
+.modal-form {
+	button::-moz-focus-inner,
+	input[type="reset"]::-moz-focus-inner,
+	input[type="button"]::-moz-focus-inner,
+	input[type="submit"]::-moz-focus-inner,
+	input[type="file"] > input[type="button"]::-moz-focus-inner {
+	    border: none;
+	}
+}
+
+.sy-button {
+	background-color: rgba(0, 0, 0, 0.0);
+	border-color: $dark;
+	border-width: rem-calc(1px);
+	border-style: solid;
+	font-weight: normal;
+	line-height: normal;
+	text-align: center;
+	text-decoration: none;
+	@include font-regular(rem-calc(12));
+	color: $dark;
+	padding: rem-calc(10px) rem-calc(30px) rem-calc(10px) rem-calc(30px);
+	margin:0 0 1.25rem 0;
+	display: inline-block;
+	position: relative;
+	outline: none;
+	@include transition(200ms);
+	&:hover {
+		border-color: $primary-color;
+		color: white;
+		background-color: $primary-color;
+	}
+	&:focus {
+		background-color: rgba(0,0,0,0.0);
+		border-color: $primary-color;
+		color: $primary-color;
+	}
+	&:active {
+		background-color: rgba(0,0,0,0.0);
+		border-color: $dark;
+		color: $dark;
+	}
+}
+.modal-button {
+	margin-top: 30px;
+}
+.modal-form {
+	margin-top: 20px;
+	input[type=text], input[type=password] {
+		@include font-regular(rem-calc(18pt));
+		margin-bottom: rem-calc(1px);
+		padding: rem-calc(10px) rem-calc(0px) rem-calc(10px) rem-calc(10px);
+		border: none;
+		/*border-width: rem-calc(1px);
+		border-style: solid;*/
+		height: auto;
+		color: $gray;
+		&:focus {
+			border-left: 10px outset $primary-color;
+			box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 1);
+			@include transition(50ms);
+			color: $dark;
+		}
+	}
+}
+.reveal-modal {
+	outline:none;
+}
+.modal-window {
+	text-align: center;
+	input[type=text], [type='password'] {
+		width: 60%;
+		margin-left: auto;
+		margin-right: auto;	
+	}
+	.modal-header {
+		width: 60%;
+		margin-left: auto;
+		padding-top: 1rem;
+		margin-right: auto;
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
+		h2 {
+			@include font-bitter2(rem-calc(48px));
+			color: white;
+			text-align: left;
+		}
+	}
+	.sy-button {
+		color: white;
+		border-color: white;
+		width: 60%;
+		font-size: rem-calc(14px);
+		&:hover {
+			border-color: $primary-color;
+			color: white;
+		}
+	}
+	.login-modal-footer {
+		padding-top: 20px;
+		p {
+			@include font-regular(rem-calc(12px));
+			color: $light;
+			line-height: 1.6;
+			a {
+				text-decoration: underline;
+				color: $light;
+				@include transition(100ms);
+				&:hover {
+					color: white;
+				}
+			}
+		}
+	}
+	.modal-help {
+	 	p {
+	 		@include font-light(rem-calc(14px));
+	 		color: white;
+	 	}
+	 	padding-bottom: rem-calc(20px);
+	}
+	.modal-header.help-header {
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+		h2 {
+			text-align: center;
+		}
+	}
+	.modal-boolean {
+		padding-bottom: rem-calc(60px);
+		p {
+	 		@include font-light(rem-calc(14px));
+	 		color: white;
+	 	}
+	 	.modal-boolean-buttons {
+	 		//margin-top: rem-calc(20px);
+	 		width: 100%;
+	 		text-align: center;
+	 		.sy-button {
+	 			width: 30%;
+	 			float: left;
+	 			margin: 0 17% 0 3%;
+	 			&:first-child {
+	 				margin: 0 3% 0 17%;
+	 			}
+	 		}
+	 	}
+	}
+}
+
+.tag {
+	border: rem-calc(1px) solid $gray;
+	margin: rem-calc(5px);
+	float: left;
+	list-style: none;
+	height: auto;
+	@include transition(100ms);
+	p {
+		line-height: auto;
+		margin: 0;
+		padding: 0;
+		padding: rem-calc(4px) rem-calc(10px) rem-calc(4px) rem-calc(10px);
+		@include transition(100ms);
+		color: $gray;
+	}
+	&:first-child {
+	margin-left: 0;
+	}
+	&:hover {
+		background-color: $gray;
+	}
+	&:hover p {
+		color: white;
+	}
+}
+
+.admin-tag {
+	border-color: $gray;
+	p {
+		color: $gray;
+		font-style: italic;
+	}
+	&:hover {
+		background-color: $gray;
+	}
+	&:hover p {
+		color: white;
+	}
+}
+
+.text-link {
+	color: white;
+}
+
+.text-link:hover {
+	color: black;
+	text-decoration: underline;
+	h2 {
+		color: black;
+	}
+}
+
+.full-screen {
+	background: rgba(255,255,255,0.95);
+	height: 100vh;
+	width: 100%;
+	margin: 0;
+	padding-top: rem-calc(30px);
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+pre {
+	width: 100%;
+	background-color: #f8f8f8;
+	border: rem-calc(1px) solid #dfdfdf;
+	border-left: rem-calc(4px) solid $primary-color;
+	padding: rem-calc(5px);
+	padding-left: rem-calc(10px);
+	border-bottom-right-radius: rem-calc(5px);
+	border-top-right-radius: rem-calc(5px);
+	max-height: rem-calc(400px);
+	overflow: auto;
+	code {
+		padding: none;
+		border: none;
+		background: none;
+		font-size: rem-calc(12px);
+	}
+}
+
+
+.sub-nav-search {
+	float: left;
+	width: 50%;
+	position: relative;
+	padding-left: 14px;
+	margin-left: 14px;
+	border-left: 1px $light solid;
+	.sub-search-field {
+		&::-webkit-input-placeholder { @include font-regular(rem-calc(14)); color: $light; }
+		&:-moz-placeholder { @include font-regular(rem-calc(14)); color: $light; opacity: 1; }
+		&::-moz-placeholder { @include font-regular(rem-calc(14)); color: $light; opacity: 1; }
+		&:-ms-input-placeholder { @include font-regular(rem-calc(14)); color: $light; }
+		background: rgba(255,255,255,0.0);
+		border: none;
+		border-color: rgba(255,255,255,0.0);
+		border-radius: 5px;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		padding: 6px 6px 8px 6px;
+		margin: 0;
+		@include font-regular(rem-calc(12px));
+		height: 27px;
+		&:focus {
+			background: rgba(255,255,255,0.0);
+			outline: 0;
+			outline: none;
+			border: 1px $light solid;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			margin-left: -1px;
+		}
+	}
+}
+
+
+.sort-container {
+	position: absolute;
+	z-index: 999;
+	top: 68px !important;
+	left: 12px !important;
+	right: auto !important;
+	width: 150px;
+	background-color: white;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border: rem-calc(1px) $dark solid;
+	-webkit-box-shadow: 1px 1px 3px 0px rgba(50, 50, 50, 0.3);
+	-moz-box-shadow:    1px 1px 3px 0px rgba(50, 50, 50, 0.3);
+	box-shadow:         1px 1px 3px 0px rgba(50, 50, 50, 0.3);
+	@include no-highlight;
+	.sort-menu {
+		list-style: none;
+		float: left;
+		position: relative;
+		margin: 0;
+		padding: 8px 8px 4px 8px;
+		li {
+			width: 100%;
+			float: left;
+			border-bottom: rem-calc(1px) $light solid;
+			text-align: left;
+			@include transition(100ms);
+			padding: 5px 5px 5px 5px;
+			//border-radius: 3px;
+			a {
+				@include font-regular(rem-calc(12px));
+				color: $dark;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				padding-left: 17px;
+				padding-right: 10px;
+				width: 148px;
+				float: left;
+				margin-left: -13px;
+				margin-right: -13px;
+				@include transition(100ms);
+				.icon {
+					float: right;
+					position: relative;
+					font-size: rem-calc(14px);
+					margin-bottom: -5px;
+					display: none;
+				}
+				&:hover {
+					background-color: $primary-color;
+					color: white;
+				}
+			}
+			.active {
+				.icon {
+					display: block;
+				}
+			}
+			/*&:hover {
+				background-color: $primary-color;
+				a {
+					color: white;
+				}
+			}*/
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+}
+.sort-container:after, .sort-container:before {
+	bottom: 100%;
+	left: 25px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.sort-container:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: white;
+	border-width: 7px;
+	margin-left: -7px;
+}
+.sort-container:before {
+	border-color: rgba(46, 48, 44, 0);
+	border-bottom-color: $dark;
+	border-width: 8px;
+	margin-left: -8px;
+}
+
+.share-options {
+	padding: rem-calc(10px);
+	.social-share {
+		float: left;
+		padding: rem-calc(10px);
+	}
+	.icon {
+		float: left;
+		margin-right: rem-calc(5px);
+		margin-top: rem-calc(-3px);
+		@include icon(rem-calc(24px),$gray);
+		@include transition(100ms);
+		&:hover {
+			color: $primary-color;
+		}
+	}
+	.share-count {
+		height: 18px;
+		width: rem-calc(50px);
+		border: 1px solid $primary-color;
+		float: left;
+		background: white;
+		position: relative;
+		p {
+			width: 100%;
+			text-align: center;
+			@include font-regular(rem-calc(9px));
+			padding: 0;
+			padding-top: rem-calc(2px);
+			margin: 0;
+		}
+	}
+	.share-count:after, .share-count:before {
+		right: 100%;
+		top: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	.share-count:after {
+		border-color: rgba(187, 128, 213, 0);
+		border-right-color: white;
+		border-width: 5px;
+		margin-top: -5px;
+	}
+	.share-count:before {
+		border-color: rgba(194, 225, 245, 0);
+		border-right-color: $primary-color;
+		border-width: 6px;
+		margin-top: -6px;
+	}
+}
+
+
+
+
+
+
+
+
+

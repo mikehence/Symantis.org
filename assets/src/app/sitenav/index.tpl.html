@@ -1,0 +1,31 @@
+<div class="mainmenu-container" ng-class="{open: menuOpen}">
+    <div class="mainmenu-inner">
+      <ul class="top sy-nav-top-toggle">
+        <li class="sitenav-search-button" ui-sref="search">
+          <span class="search-icon"><i class="icon icon-search"></i></span><span class="search">Search</span>
+        </li>
+      </ul>
+
+      <ul class="middle" >
+      	<li ng-repeat="siteItem in siteItems">
+          	<a ui-sref-active="active" ui-sref="{{siteItem.sref}}">{{siteItem.title}}</a>
+      	</li>
+      </ul>
+
+      <ul class="bottom sy-nav-bottom-toggle" >
+        <li class="logo">
+          <a href="/home">
+          <span class="sy">sy.</span><span class="mantis">mantis</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="mainmenu-toggle">
+      <div class="btn-container" ng-click="menuToggle()" ng-class="{open: menuOpen, active: notificationsOpen}">
+        <div  class="menu-button" ng-class="{active: menuOpen}">
+          <span></span>
+        </div>
+      </div>
+      <div class="btn-border" ng-class="{open: menuOpen, active: notificationsOpen}"></div>
+    </div>
+</div>

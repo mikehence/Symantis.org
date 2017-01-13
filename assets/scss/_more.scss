@@ -1,0 +1,148 @@
+.more-category-nav {
+	ul {
+		list-style: none;
+		float: left;
+		position: relative;
+		width: 100%;
+		li {
+			padding: rem-calc(8px) 0 rem-calc(8px) 0 !important;
+			margin: 0 !important;
+			line-height: 1;
+			float: left;
+			width: 100%;
+			position: relative;
+			a {
+				padding: 0;
+				margin: 0;
+				@include font-light(14px);
+				color: darken($light, 10%);
+				@include transition(100ms);
+				line-height: 1.4;
+				float: left;
+				&:hover {
+					color: $dark;
+				}
+				&.active {
+					border-left: 4px $primary-color solid;
+					color: $darkest;
+					padding-left: rem-calc(8px);
+				}
+				span {
+					float: left;
+					font-size: rem-calc(28px);
+					margin-top: -8px;
+					margin-right: 10px;
+					//line-height: 0.4;
+				}
+			}
+		}
+	}
+}
+
+.team-header {
+	width: 100%;
+	position: relative;
+}
+.team-statement {
+	width: 100%;
+	position: relative;
+	padding: 0px 0 40px 0;
+	//text-align: center;
+	border-bottom: 1px $light solid;
+	background-color: white;
+	margin-top: -1px;
+	h2 {
+		@include font-semi(rem-calc(24px));
+		color: $dark;
+	}
+	p {
+		@include font-light(rem-calc(16px));
+		color: darken($gray, 8%);
+	}
+}
+.rc-statement {
+	width: 100%;
+	position: relative;
+	padding: 0px 0 15px 0;
+	//text-align: center;
+	border-bottom: 1px $light solid;
+	background-color: white;
+	margin-top: -1px;
+	h2 {
+		@include font-semi(rem-calc(24px));
+		color: $dark;
+	}
+}
+.rc-description {
+	padding-bottom: 10px;
+}
+#rc-user {
+	color: $primary-color;
+}
+.more-container {
+	width: 100%;
+	height: 100%;
+	float: left;
+	position: relative;
+	.row {
+		margin: 0;
+	}
+	section {
+		&:nth-child(odd) {
+			padding-left: 0;
+		}
+		&:nth-child(even) {
+			padding-right: 0;
+		}
+	}
+	.gr-container {
+		&:nth-child(1n + 1) {
+			padding-top: 0 !important;
+		}
+		h4 {
+			@include font-semi(rem-calc(14px));
+			color: $dark;
+			line-height: 2;
+			text-align: left;
+		}
+	}
+}
+.sy-donate {
+	margin-top: 40px;
+	position: relative;
+	float: left;
+	.row {
+		float: left;
+		width: 100%;
+		margin-left: 0;
+		.columns:first-child {
+			padding-left: 0;
+		}
+		.columns:last-child {
+			padding-right: 0;
+		}
+		.sy-donate-submit {
+			text-align: right;
+		}
+		&:last-child {
+			//padding-bottom: 40px;
+		}
+	}
+	.sy-button {
+		margin-bottom: 0;
+	}
+}
+.paypal-donate {
+	float: left;
+	position: relative;
+	width: 100%;
+	border-top: 1px $light solid;
+	padding-top: 40px;
+	margin-top: 40px;
+	h3 {
+		@include font-semi(rem-calc(14px));
+		float: left;
+		width: auto;
+		padding-right: 30px;
+	}
+}

@@ -1,0 +1,150 @@
+<div id="heading-row" class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns heading-left">
+		<!-- Section on left of heading -->
+	</section>
+    <section class="medium-9 large-8 columns medium-offset-3 large-offset-3 sub-heading">
+        <h1><a class="dead-link">{{currentUser.firstName}} {{currentUser.lastName}}</a></h1>
+    </section>
+    <section class="medium-0 large-1 columns heading-right">
+		<!-- Section on right of heading -->
+	</section>
+</div>
+<div class="row fluid-row">
+    <section class="medium-3 large-2 large-offset-1 columns main-left profile-left">
+        <div class="wrapper" ui-view="leftside">
+
+        </div>
+    </section>
+    
+    <section class="medium-9 large-8 large-offset-3 medium-offset-3 columns main-center profile-feed-center">
+
+        <header class="profile-sub-nav">
+            <ul class="profile-sub-nav-left">
+                <li class="profile-sort"><a dropdown-toggle="#profile-sort-menu">Sort By <span class="icon-vote-down icon"></span></a></li>
+            </ul>
+            <div class="sub-nav-search">
+                <input 
+                    class="sub-search-field" 
+                    type="search" 
+                    name="sub-search-field" 
+                    placeholder="Search" 
+                />
+            </div>
+            <div class="profile-sub-nav-right">
+            </div>
+        </header>
+        <div class="sort-container" id="profile-sort-menu">
+            <ul class="sort-menu">
+                <li><a class="active">Recent <span class="icon-check icon"></span></a></li>
+                <li><a >Popular <span class="icon-check icon"></span></a></li>
+            </ul>
+        </div>
+
+        <section class="clearfix">
+            <alert class="animate-repeat" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </section>
+
+        <div 
+            masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".profile-pod-wrap", "gutter": ".gutter-sizer" }' 
+            class="profile-feed-container" 
+            ui-view="profile-feed"
+        >
+            <div class="gutter-sizer"></div>
+
+            <article 
+                masonry-tile
+                class="activity-{{ post.verb }} profile-pod-wrap" 
+                ng-repeat="post in activity"
+                ng-class="{ large: post.description.length > 300, small: post.description.length < 50 }"
+            >
+                <div class="profile-pod">
+                    <section class="profile-pod-header">
+                        <p>{{ post.createdAt | date }}</p>
+                        <div class="profile-pod-options">
+                            <a dropdown-toggle="#me-pod-options-{{ post.id || number }}" title="Options">
+                                <span class="icon-vote-down"></span>
+                            </a>
+                        </div>
+                    </section>
+                    <section class="profile-pod-img" ng-show="post.img">
+                        <a >
+                            <img ng-src="{{ post.img.src }}" alt="{{ post.img.name }}" />
+                        </a>
+                    </section>
+                    <section class="profile-pod-body">
+                        <h3>
+                            <a ui-sref="profile.view({ handle: post.author.handle })">{{ post.author.firstName }} {{ post.author.lastName }}</a>
+                             {{ post.verb }} 
+                            <span ng-show="post.user">
+                                <a ui-sref="profile.view({ handle: post.user.handle })">{{ post.user.firstName }} {{ post.user.lastName }}</a> 
+                                in a
+                            </span>
+                            <a >{{ post.parent }}</a>
+                        </h3>
+                        <p>{{ post.description }}</p>
+                    </section>
+                    <section class="profile-pod-footer">
+                        <a 
+                            class="f-left" 
+                            ui-sref="profile.view.manti({ handle: post.author.handle })"
+                            ng-show="post.type=='Manti'"
+                        >{{ post.type }}</a>
+                        <a 
+                            class="f-left" 
+                            ui-sref="community.queries"
+                            ng-show="post.type=='Query'"
+                        >{{ post.type }}</a>
+                        <a 
+                            class="f-left" 
+                            ui-sref="community.board"
+                            ng-show="post.type=='Opportunity'"
+                        >{{ post.type }}</a>
+
+                        <p 
+                            ng-show="post.child.length > 1" 
+                            class="f-child-des"
+                        >{{ post.child }}<span> in </span>{{ post.parent }}</p>
+
+                        <a dropdown-toggle="#me-pod-share-{{ post.id || number }}">Share</a>
+                    </section>
+
+                    <section class="pod-options" id="me-pod-options-{{ post.id || number }}">
+                        <p class="pod-options-exit">Options</p>
+                        <ul class="pod-options-list">
+                            <li><a >Remove from Feed</a></li>
+                            <li><a >Block User</a></li>
+                            <li><a >Flag as inappropriate</a></li>
+                        </ul>
+                    </section>
+                    <section class="pod-share" id="me-pod-share-{{ post.id || number }}">
+                        <ul class="pod-share-options">
+                            <li><a ><span class="icon-social-facebook"></span></a></li>
+                            <li><a ><span class="icon-social-twitter"></span></a></li>
+                            <li><a ><span class="icon-social-behance"></span></a></li>
+                            <li><a ><span class="icon-social-github"></span></a></li>
+                        </ul>
+                    </section>
+
+                </div>
+                
+            </article>
+
+            <div class="clearfix">
+                <div class="infinite-scroll-more" ng-show="activity.length > 5">
+                    <a ><span class="icon-dot-3"></span></a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="medium-0 large-1 columns main-right">
+        <header class="right-header">
+        	<!-- Main Right Heading -->
+        </header>
+        <div class="right-content">
+        	<!-- Main Right Content -->
+        </div>
+    </section>
+</div>

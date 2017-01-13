@@ -1,0 +1,115 @@
+<div ng-show="loadingSection" class="preloader-container">
+    <!-- loadingSection is a variable defined in the $scope -->
+	<div class="preloader">
+    </div>
+</div>
+<div ng-hide="loadingSection" class="medium-12 columns new-query-page">
+	<h3>Edit Query as <a ui-sref="me">{{ currentUser.firstName }} {{ currentUser.lastName }}</a></h3>
+	
+	<div class="query-page new-query">
+		<form class="new-query-form" name="queryForm">
+			<div 
+				ng-init="query.preview = false"
+				ng-show="query.preview"
+				class="query-post preview clearfix"
+			>
+				<section class="querie-header">
+				    <div class="querie-header-title">
+				        <h3>
+				        	<a>
+				        		{{ query.title || "Add a query title"}}
+				        	</a>
+				        </h3>
+				    </div>
+				</section>
+				<section class="query-content">
+					<div class="query-content-main">
+						<markdown ng-model="query.query" strip="true" extensions="github, table">
+						Add your query!
+						</markdown>
+					</div>
+				</section>
+				<section class="query-footer">	
+					<div class="querie-tags">
+			            <ul class="clearfix">
+			                <li class="tag {{ tag.privillege }}-tag" ng-repeat="tag in query.tags track by $index">
+			                    <a title="View content tagged with {{ tag.title }}">
+			                        <p>{{ tag.text }}</p>
+			                    </a>
+			                </li>
+			            </ul>
+					</div>
+				</section>
+			</div>
+			<div 
+				class="query-post preview"
+				ng-hide="query.preview"
+			>
+				<input 
+					type="text" 
+					name="title"
+					placeholder="Query Title"
+					ng-model="query.title"
+					required 
+				/>
+		        <div class="new-query-inner">
+		        	<div class="query-options">
+				        <ul>
+				        	<li class="query-options-edit">
+				        		<a title="Insert Text" class="selected">
+				        			<span class="text-icon">Aa</span>
+				        		</a>
+				        	</li>
+					        <li class="query-options-link">
+								<a title="Insert Link">
+				        			<span class="icon-link"></span>
+								</a>
+				        	</li>
+				        	<li class="query-options-image">
+				        		<a title="Insert Image">
+				        			<span class="icon-photo"></span>
+				        		</a>
+				        	</li>
+				        	<li class="query-options-code">
+				        		<a title="Insert Code Snippet">
+				        			<span class="icon-code-snippet"></span>
+				        		</a>
+				        	</li>
+				        </ul>
+				    </div>
+					<textarea 
+						name="query" 
+						placeholder="Whats your Query?"
+						ng-model="query.query"
+						required
+					></textarea>
+				</div>
+				<tags-input class="new-query-tag" ng-model="query.tags">
+		            <auto-complete source="loadTags($query)"></auto-complete>
+		        </tags-input>
+	        </div>
+			<div class="new-query-post">
+				<p>
+					<a 
+						ng
+						class="sy-button"
+						ng-click="updateQuery(queryForm)"
+					>
+						{{ saveStatus }}
+					</a>
+				</p>
+			</div>
+			<div class="new-query-preview">
+				<p>
+					<a 
+						ng-click="query.preview = !query.preview"
+						class="sy-button" 
+					>
+						<span ng-hide="query.preview">Preview</span>
+						<span ng-show="query.preview">Edit</span>
+					</a>
+				</p>
+			</div>
+		</form>
+	</div>
+</div>

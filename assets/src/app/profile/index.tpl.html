@@ -1,0 +1,71 @@
+<div id="heading-row" class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns heading-left" ui-view="leftside">
+		<!-- Section on left of heading -->
+	</section>
+    <section class="medium-9 large-8 columns medium-offset-3 large-offset-3 sub-heading">
+        <h1>
+            <a ui-sref="profile">Profiles</a>
+        </h1>
+    </section>
+    <section class="medium-0 large-1 columns heading-right">
+		<!-- Section on right of heading -->
+	</section>
+</div>
+<div class="row fluid-row">
+    <section class="medium-3 large-2 large-offset-1 columns main-left" ui-veiw="leftside">
+    	<!-- Section for main left header -->
+        <header class="left-header">
+        
+        </header>
+        <div class="left-content">
+            <!-- Section for main left content -->
+        </div>
+    </section>
+    <section class="medium-9 large-8 large-offset-3 medium-offset-3 columns main-center">
+    	<!-- Section for main center header -->
+        <header></header>
+        <div class="row connections-container">
+            <article 
+                class="animate-repeat connections-individual medium-6"
+                ng-repeat="user in users track by $index"
+            >
+                <div class="connections-pic connections-{{ user.status }} generate-image" signature="{{ user.signature }}"></div>
+                <h2 class="connections-name">
+                    <a 
+                        ui-sref="profile.view({ id: user.id, handle: user.handle })"
+                        title="View {{ user.firstName }}'s Profile"
+                    >
+                        {{ user.firstName + ' ' + user.lastName }}
+                    </a>
+                </h2>
+                <p class="connections-bio">
+                    {{ user.professed }}
+                </p>
+                <p class="connections-skills">
+                    <a 
+                        ng-repeat="tag in user.tags" 
+                        ui-sref="community.tags.view({ tag: tag.text })"
+                        title="View users tagged with {{ tag.text }}"
+                    >
+                        {{ tag.text }}
+                    </a>
+                </p>
+                <a title="Message {{ user.firstName }}">
+                    <div class="connections-message">
+                        <div class="icon-message"></div>
+                    </div>
+                </a>
+            </article>
+        </div>
+
+        <!-- Section for main center content -->
+    </section>
+    <section class="medium-0 large-1 columns main-right">
+        <header class="right-header">
+        	<!-- Main Right Heading -->
+        </header>
+        <div class="right-content">
+        	<!-- Main Right Content -->
+        </div>
+    </section>
+</div>

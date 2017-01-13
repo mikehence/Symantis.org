@@ -1,0 +1,37 @@
+<header class="profile-left-user left-header">
+    <div class="profile-pic margin-top">
+        <div class="profile-pic-inner online generate-image" signature="{{ currentUser.signature }}"></div>
+    </div>
+</header>
+<header class="profile-left-options left-header">
+    <ul>
+        <li class="profile-connections">
+            <a title="View Connection Statistics" dropdown-toggle="#me-connections-table">
+                <div class="icon-2way icon"></div>
+                <h3>Connections <span>{{currentUser.totalConnections || 0}}</span></h3> 
+            </a>
+        </li>
+        <li class="profile-connections-tab">
+            <table id="me-connections-table" class="connections-table">
+                <tr>
+                    <td><a >Incoming Connections</a></td>
+                    <td>{{ currentUser.totalFromConnections || 0 }}</td>
+                </tr>
+                <tr>
+                    <td><a >Outgoing Connections</a></td>
+                    <td>{{ currentUser.totalToConnections || 0 }}</td>
+                </tr>
+                <tr>
+                    <td><a >Two-way Connections</a></td>
+                    <td>{{ currentUser.totalReciprocal || 0}}</td>
+                </tr>
+            </table>
+        </li>
+        <li class="profile-option">
+            <a ui-sref="me.settings">
+                <div class="icon-settings icon"></div>
+                <h3>Settings</h3> 
+            </a>
+        </li>
+    </ul>
+</header>

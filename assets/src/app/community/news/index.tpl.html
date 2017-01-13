@@ -1,0 +1,165 @@
+<div id="heading-row" class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns heading-left">
+		<!-- Section on left of heading -->
+	</section>
+    <section class="medium-9 large-8 columns medium-offset-3 large-offset-3 sub-heading">
+        <h1><a ui-sref="community.news">News</a></h1>
+    </section>
+    <section class="medium-0 large-1 columns heading-right">
+		<!-- Section on right of heading -->
+	</section>
+</div>
+<div class="row fluid-row">
+    <section class="medium-3 large-2 large-offset-1 columns main-left news-left" ui-view="leftside">
+        
+    </section>
+    <section class="medium-9 large-8 large-offset-3 medium-offset-3 columns main-center" ui-view="news">
+        <header></header>
+        <div ng-show="loadingSection" class="preloader-container">
+            <!-- loadingSection is a variable defined in the $scope -->
+            <div class="preloader">
+            </div>
+        </div>
+        <div class="fade" ng-class="{in: !loadingSection}">
+            <article class="row news-post" ng-repeat="article in news">
+                <div class="medium-2 large-1 columns news-post-date">
+                    <h2>
+                        {{ article.date | date:'dd MMM' }}
+                    </h2>
+                </div>
+                <div class="medium-10 large-11 columns news-post-content">
+                    <a 
+                        ng-show="article.thumbnail.link"
+                        ui-sref="community.news.view({id: article.id, title: article.name })"
+                    >
+                        <img ng-src="{{ article.thumbnail.link }}">
+                    </a>
+                    <a ui-sref="community.news.view({id: article.id, title: article.name })">
+                        <h3>{{ article.title }}</h3>
+                    </a>
+                    <p class="news-copy">{{ article.excerpt }}</p>
+                    <ul class="news-post-footer">
+                        <li class="news-post-share">
+                            <div class="twitter-share">
+                                <a title="Share on Twitter">
+                                    <div class="icon-social-twitter icon"></div>
+                                </a>
+                                <div class="share-count">
+                                    <p>{{ article.social.twitter || 0 }}</p>
+                                </div>
+                            </div>
+                            <div class="facebook-share">
+                                <a title="Share on Facebook">
+                                    <div class="icon-social-facebook icon"></div>
+                                </a>
+                                <div class="share-count">
+                                    <p>{{ article.social.facebook || 0 }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="news-post-comments">
+                            <p>
+                                <a 
+                                    ui-sref="community.news.view({id: article.id, title: article.name, comments:'comments' })"
+                                >View Comments ({{ article.comments.length || 0 }})</a>
+                            </p>
+                        </li>
+                        <li class="news-post-details">
+                            <div class="news-details">
+                                <div class="news-details-pic author-{{ article.author.status }} generate-image" signature="{{ article.author.signature }}"></div>
+                                <p class="news-details-by">
+                                    <a ng-show="article.author.handle" ui-sref="profile.view({ handle: article.author.handle })">
+                                        {{ article.author.firstName }} {{ article.author.lastName }}
+                                    </a>
+                                    <a ng-show="!article.author.handle"> 
+                                        Admin
+                                    </a>
+                                </p>
+                                <p class="news-details-on">
+                                    <span>
+                                        {{ article.date | date }}
+                                    </span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+        <!--
+        <article class="row news-post" ng-repeat="article in articles">
+            <div class="medium-2 large-1 columns news-post-date">
+                <h2>
+                    {{ article.date | date:'dd MMM' }}
+                </h2>
+            </div>
+            <div class="medium-10 large-11 columns news-post-content">
+                <a 
+                    ng-show="article.img"
+                    ui-sref="community.news.view({id: article.id, title: article.clean() })"
+                >
+                    <img ng-src="{{ article.img }}">
+                </a>
+                <a ui-sref="community.news.view({id: article.id, title: article.clean() })">
+                    <h3>{{ article.title }}</h3>
+                </a>
+                <p class="news-copy">{{ article.description }}</p>
+                <ul class="news-post-footer">
+                    <li class="news-post-share">
+                        <div class="twitter-share">
+                            <a title="Share on Twitter">
+                                <div class="icon-social-twitter icon"></div>
+                            </a>
+                            <div class="share-count">
+                                <p>{{ article.social.twitter }}</p>
+                            </div>
+                        </div>
+                        <div class="facebook-share">
+                            <a title="Share on Facebook">
+                                <div class="icon-social-facebook icon"></div>
+                            </a>
+                            <div class="share-count">
+                                <p>{{ article.social.facebook }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-show="article.comments.length > 0" class="news-post-comments">
+                        <p>
+                            <a 
+                                ui-sref="community.news.view({id: article.id, title: article.clean(), comments:'comments' })"
+                            >View Comments ({{ article.comments.length }})</a>
+                        </p>
+                    </li>
+                    <li class="news-post-details">
+                        <div class="news-details">
+                            <div class="news-details-pic author-{{ article.author.status }} generate-image" signature="{{ article.author.signature }}"></div>
+                            <p class="news-details-by">
+                                <a ui-sref="profile.view({ handle: article.author.handle })">
+                                    {{ article.author.firstName }} {{ article.author.lastName }}
+                                </a>
+                            </p>
+                            <p class="news-details-on">
+                                <span>
+                                    {{ article.date | date }}
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </article>
+        -->
+        <div class="infinite-scroll-more" ng-show="articles.length > 3">
+            <a ><span class="icon-dot-3"></span></a>
+        </div>
+
+    </section>
+    <section class="medium-0 large-1 columns main-right">
+        <header class="right-header">
+        	<!-- Main Right Heading -->
+        </header>
+        <div class="right-content">
+        	<!-- Main Right Content -->
+        </div>
+    </section>
+</div>

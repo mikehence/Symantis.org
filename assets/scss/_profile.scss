@@ -1,0 +1,551 @@
+.profile-left {
+	.profile-left-user {
+		h3 {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			@include font-semi(rem-calc(18px));
+			padding-bottom: rem-calc(20px);
+			margin-bottom: rem-calc(20px);
+			border-bottom: 1px $light solid;
+			span {
+				width: 100%;
+				padding-top: rem-calc(5px);
+				float: left;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				@include font-regular(rem-calc(12px));
+			}
+		}
+		.profile-pic {
+			float: left;
+			position: relative;
+			width: 100%;
+			height: 0;
+			padding-bottom: 100%;
+			margin-bottom: rem-calc(25px);
+			.profile-pic-inner {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				border: rem-calc(2px) black solid;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			&.margin-top {
+				margin-top: rem-calc(40px);
+				margin-bottom: rem-calc(60px);
+			}
+		}
+	}
+	.profile-left-options {
+		float: left;
+		border-top: 1px $light solid;
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				width: 100%;
+				float: left;
+				position: relative;
+				height: rem-calc(26px);
+				a {
+					width: 100%;
+					float: left;
+					height: rem-calc(26px);
+					position: relative;
+				}
+				h3 {
+					width: auto;
+					position: absolute;
+					left: 26px;
+					@include font-regular(rem-calc(12px));
+					color: $gray;
+					@include transition(100ms);
+				}
+				.icon {
+					@include icon(rem-calc(12px),$gray);
+					position: absolute;
+					top: 2px;
+					left: 0;
+					@include transition(100ms);
+				}
+			}
+			.profile-option {
+				&:hover h3 {
+					color: $dark;
+				}
+				&:hover .icon {
+					color: $dark;
+				}
+			}
+			.profile-connections {
+				//margin-bottom: 10px;
+				.icon {
+					font-size: rem-calc(18px);
+					margin-left: -3px;
+					margin-top: -3px;
+				}
+				h3 {
+					position: relative;
+					span {
+						background-color: $light;
+						border-radius: 2px;
+						padding: 2px 6px 2px 6px;
+						color: white;
+						margin-left: 5px;
+					}
+				}
+				&:hover h3 {
+					color: $dark;
+				}
+				&:hover .icon {
+					color: $dark;
+				}
+			}
+			.profile-connections-tab {
+				height: auto;
+				//padding-top: 10px;
+				.connections-table {
+					float: left;
+					margin-top: 10px;
+					width: 100%;
+					position: relative;
+					border-top: 1px $light solid;
+					border-left: none;
+					border-right: none;
+					border-bottom: none;
+					a {
+						height: auto;
+					}
+					tbody {
+						width: 100%;
+						display: block;
+					}
+					tr {
+						width: 100%;
+						display: block;
+						background-color: white;
+						border-bottom: 1px $light solid;
+						td {
+							background-color: white;
+							font-size: rem-calc(12px);
+							//border-bottom: 1px $light solid;
+							&:first-child {
+								padding-left: 0;
+								border-right: 1px $offWhite solid;
+							}
+						}
+					}
+				}
+				.connections-table:after, .connections-table:before {
+					bottom: 100%;
+					left: 25%;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
+					position: absolute;
+					pointer-events: none;
+				}
+				.connections-table:after {
+					border-color: rgba(255, 255, 255, 0);
+					border-bottom-color: white;
+					border-width: 7px;
+					margin-left: -7px;
+				}
+				.connections-table:before {
+					border-color: rgba(46, 48, 44, 0);
+					border-bottom-color: $light;
+					border-width: 8px;
+					margin-left: -8px;
+				}
+			}
+		}
+	}
+}
+.profile-center {
+	position: relative;
+	.profile-header {
+		padding-top: rem-calc(10px);
+	}
+	h3 {
+		@include font-semi(rem-calc(18px));
+	}
+	p {
+		@include font-regular(rem-calc(12px));
+		&.user-bio {
+			font-size: rem-calc(14px);
+		}
+	}
+	.profile-section {
+		margin-top: rem-calc(20px);
+		position: relative;
+		width: 100%;
+		border-radius: rem-calc(2px);
+
+		-webkit-box-shadow: 0.5px 0.5px 0px 1px rgba(60, 60, 60, 0.3);
+		-moz-box-shadow:    0.5px 0.5px 0px 1px rgba(60, 60, 60, 0.3);
+		box-shadow:         0.5px 0.5px 0px 1px rgba(60, 60, 60, 0.3);
+		header {
+			width: 100%;
+			height: rem-calc(55px);
+			background-color: rgb(251,251,252);
+			border-bottom: 1px $light solid;
+			padding: rem-calc(15px);
+			border-top: none;
+		}
+		article {
+			padding: rem-calc(15px);
+			width: 100%;
+		}
+	}
+	.profile-edit {
+		position: absolute;
+		top: rem-calc(12px);
+		right: rem-calc(10px);
+		padding: rem-calc(6px) rem-calc(10px);
+		color: white;
+		background-color: $primary-color;
+		border-color: $primary-color;
+		border-radius: rem-calc(2px);
+		span {
+			position: absolute;
+			top: 4px;
+			left: 6px;
+		}
+		&:hover {
+			//color: $primary-color;
+			background-color: darken($primary-color, 15%);
+			border-color: darken($primary-color, 15%);
+		}
+	}
+	.profile-manti-content {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			width: 100%;
+			li {
+				padding-top: rem-calc(20px);
+				padding-bottom: rem-calc(15px);
+				width: 100%;
+				height: auto;
+				border-bottom: 1px $light solid;
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+		}
+		.current-manti-view {
+			height: auto;
+			min-height: rem-calc(60px);
+			position: relative;
+			width: 5rem;
+			float: left;
+			margin-right: -5rem;
+			p {
+				text-align: right;
+				width: 100%;
+				margin-top: rem-calc(-2px);
+				min-height: rem-calc(60px);
+				padding-right: rem-calc(15px);
+			}
+		}	
+		.current-manti-view:hover p {
+			color: $primary-color;
+		}
+		.current-manti-view:hover + .current-manti-content {
+			.manti-content-inner {
+				border-left: rem-calc(5px) $primary-color solid;
+			}
+		}
+		.current-manti-content {
+			height: auto;
+			min-height: rem-calc(60px);
+			padding-left: 5rem;
+			width: 100%;
+			position: relative;
+			.manti-content-inner {
+				border-left: 1px $offWhite solid;
+				height: 100%;
+				@include transition(0.1s);
+				padding-left: rem-calc(15px);
+			}
+			h3 {
+				@include font-semi(rem-calc(15px));
+				padding: 0;
+				padding-bottom: rem-calc(2px);
+				margin: 0;
+				margin-top: rem-calc(-3px);
+			}
+			p {
+				//max-width: rem-calc(500px);
+			}
+		}
+		&:after {
+			content:"";
+			clear:both;
+			display:block;
+		}
+		&:before {
+			content:"";
+			clear:both;
+			display:block;
+		}
+	}
+	.profile-info-more {
+		position: relative;
+		width: 100%;
+		height: rem-calc(40px);
+		display: block;
+		text-align: center;
+		background-color: rgb(251,251,252);
+		@include tranSpec(background-color, 200ms);
+		border-top: 1px $offWhite solid;
+		margin-top: rem-calc(10px);
+		span {
+			color: $gray;
+			font-size: rem-calc(24px);
+			position: relative;
+			bottom: -.5rem;
+		}
+		&:hover {
+			background-color: $offWhite;
+		}
+	}
+
+	.profile-contributions-content {
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			width: 100%;
+			li {
+				padding-top: rem-calc(20px);
+				padding-bottom: rem-calc(15px);
+				width: 100%;
+				height: auto;
+				border-bottom: 1px $light solid;
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+		}
+		.recent-contribution-category {
+			height: auto;
+			min-height: rem-calc(60px);
+			position: relative;
+			width: 5rem;
+			float: left;
+			margin-right: -5rem;
+			p {
+				text-align: right;
+				width: 100%;
+				margin-top: rem-calc(-2px);
+				min-height: rem-calc(60px);
+				padding-right: rem-calc(15px);
+			}
+		}
+		.recent-contribution-category:hover p {
+			color: $primary-color;
+		}
+		.recent-contribution-category:hover + .recent-contribution-content {
+			.re-contrib-inner {
+				border-left: rem-calc(5px) $primary-color solid;
+			}
+		}
+		.recent-contribution-content {
+			height: auto;
+			min-height: rem-calc(60px);
+			padding-left: 5rem;
+			width: 100%;
+			.re-contrib-inner {
+				border-left: 1px $offWhite solid;
+				height: auto;
+				@include transition(0.1s);
+				padding-left: rem-calc(15px);
+			}
+			h3 {
+				@include font-semi(rem-calc(15px));
+				padding: 0;
+				padding-bottom: rem-calc(2px);
+				margin: 0;
+				margin-top: rem-calc(-3px);
+			}
+			p {
+				//max-width: rem-calc(500px);
+			}
+		}
+		&:after{
+			content:"";
+			clear:both;
+			display:block;
+		}
+	}
+}
+
+
+.profile-sub-nav {
+	border-bottom: rem-calc(1px) $dark solid;
+	padding-bottom: rem-calc(20px);
+	margin-bottom: rem-calc(20px);
+	ul {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		width: auto;
+		li {
+			margin: 0;
+			padding: 0;
+			width: rem-calc(70px);
+			text-align: center;
+			a {
+				@include font-regular(rem-calc(12px));
+				width: 100%;
+				color: darken($light, 10%);
+				//display: block;
+				padding-bottom: rem-calc(25px);
+				padding-top: rem-calc(25px);
+				@include transition(100ms);
+				&:hover {
+					//border-top: 3px $dark solid;
+					//padding-top: rem-calc(23px);
+					color: black;
+				}
+			}
+		}
+		&:after{
+			clear:both;
+			display:block;
+			content:"";
+		}
+	}
+	.profile-sub-nav-left {
+		float: left;
+		li {
+			float: left;
+			text-align: left;
+			&.profile-sort {
+				@include no-highlight;
+				line-height: 1.7;
+				a {
+					@include no-highlight;
+					color: $dark;
+					.icon {
+						padding-left: 4px;
+						position: relative;
+						bottom: -.1rem;
+					}
+				}
+				&.active {
+					color: red;
+				}
+			}
+		}
+		.back-btn {
+			padding-top: rem-calc(5px);
+		}
+	}
+	.profile-sub-nav-right {
+		float: right;
+		.connect-button {
+			height: rem-calc(30px);
+			width: rem-calc(30px);
+			float: right;
+			border: 1px $gray solid;
+			border-radius: 50%;
+			text-align: center;
+			font-size: rem-calc(24px);
+			color: $gray;
+			@include transition(100ms);
+			margin-bottom: rem-calc(-2px);
+			margin-top: rem-calc(-2px);
+			span {
+				position: relative;
+				bottom: -.1rem;
+			}
+			&:hover {
+				color: $primary-color;
+				border-color: $primary-color;
+			}
+			&.active {
+				background-color: $primary-color;
+				border-color: $primary-color;
+				color: white;
+			}
+		}
+		.message-button {
+			height: rem-calc(30px);
+			width: rem-calc(30px);
+			border: 1px $primary-color solid;
+			float: right;
+			border-radius: 50%;
+			margin-right: rem-calc(10px);
+			font-size: rem-calc(12px);
+			color: $primary-color;
+			text-align: center;
+			margin-bottom: rem-calc(-2px);
+			margin-top: rem-calc(-2px);
+			@include transition(100ms);
+			span {
+				position: relative;
+				bottom: -.3rem;
+			}
+			&:hover {
+				color: white;
+				background-color: $primary-color;
+			}
+			&.active {
+				background-color: $primary-color;
+				color: white;
+				&:hover {
+					background-color: darken($primary-color, 10%);
+					border-color: darken($primary-color, 10%);
+				}
+			}
+		}
+	}
+	&:after{ 
+		clear:both;
+		display:block;
+		content:"";
+	}
+}
+
+
+
+.profile-activity-content{
+	min-height:110px;
+}
+.day {
+  fill: #fff;
+  stroke: #ccc;
+}
+
+.month {
+  fill: none;
+  stroke: rgba(190, 192, 188, 1);
+  stroke-width:2px;
+}
+
+.RdYlGn .q0-11{fill:rgb(165,0,38)}
+.RdYlGn .q1-11{fill:rgb(215,48,39)}
+.RdYlGn .q2-11{fill:rgb(244,109,67)}
+.RdYlGn .q3-11{fill:rgb(253,174,97)}
+.RdYlGn .q4-11{fill:rgb(254,224,139)}
+.RdYlGn .q5-11{fill:rgb(255,255,191)}
+.RdYlGn .q6-11{fill:rgb(217,239,139)}
+.RdYlGn .q7-11{fill:rgb(166,217,106)}
+.RdYlGn .q8-11{fill:rgb(102,189,99)}
+.RdYlGn .q9-11{fill:rgb(26,152,80)}
+.RdYlGn .q10-11{fill:rgb(0,104,55)}
+
+

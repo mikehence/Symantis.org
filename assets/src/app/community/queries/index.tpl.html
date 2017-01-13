@@ -1,0 +1,121 @@
+<div id="heading-row" class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns heading-left">
+		<!-- Section on left of heading -->
+	</section>
+    <section class="medium-9 large-8 columns medium-offset-3 large-offset-3 sub-heading">
+        <h1><a ui-sref="community.queries">Queries</a></h1>
+    </section>
+    <section class="medium-0 large-1 columns heading-right">
+		<!-- Section on right of heading -->
+	</section>
+</div>
+<div class="row fluid-row">
+    <section class="medium-3 large-2 large-offset-1 columns main-left queries-left">
+        <div class="wrapper" ui-view="leftside">
+
+        </div>      
+    </section>
+    <section class="medium-9 large-8 large-offset-3 medium-offset-3 columns main-center">
+    	<!-- Section for main center header -->
+        <header class="queries-sub-nav">
+            <div class="queries-sub-nav-left" ui-view="query-nav">
+                <ul>
+                    <li class="queries-sort"><a dropdown-toggle="#querie-sort-menu">Sort By <span class="icon-vote-down icon"></span></a></li>
+                </ul>
+            </div>
+            <div class="sub-nav-search">
+                <input 
+                    class="sub-search-field" 
+                    type="search" 
+                    name="subSearchField" 
+                    placeholder="Search" 
+                    ng-model="queryValue"
+                    ng-search="searchQueries(queryValue)"
+                />
+                <i ng-show="loadingQueries" class="icon-refresh icon"></i>
+
+            </div>
+            <ul class="queries-sub-nav-right" ng-show="currentUser">
+                <li class="queries-new"><a ui-sref="community.queries.new" title="New Query"><span class="icon-plus"></span></a></li>
+                <li class="queries-myQueries"><a ui-sref="community.queries.mine" title="View your Queries">My Queries</a></li>
+            </ul>
+        </header>
+        <div class="sort-container" id="querie-sort-menu">
+            <ul class="sort-menu">
+                <li><a >Most Recent <span class="icon-check icon"></span></a></li>
+                <li><a class="active">Most Viewed <span class="icon-check icon"></span></a></li>
+                <li><a >Answered <span class="icon-check icon"></span></a></li>
+                <li><a >Unanswered <span class="icon-check icon"></span></a></li>
+            </ul>
+        </div>
+        <section class="clearfix">
+            <alert class="animate-repeat" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </section>
+
+        <!-- Section for main center content -->
+        <div class="row" ui-view="queries">
+            <div ng-show="loadingSection" class="preloader-container">
+                <!-- loadingSection is a variable defined in the $scope -->
+                <div class="preloader">
+                </div>
+            </div>
+            <div class="medium-12 columns queries-main-container fade" ng-class="{in: !loadingSection}">
+                <article ng-repeat="query in queries | filter:queryValue track by $index" class="animate-repeat querie-overview">
+                    <div class="querie-overview-main">
+                        <h3>
+                            <a ui-sref="community.queries.view({id: query.id, title: query.clean })">
+                                <span class="icon-check response-favourite" ng-show="query.solved"></span>
+                                {{ query.title }}
+                            </a>
+                        </h3>
+                        <div class="querie-tags">
+                            <ul>
+                                <li class="tag {{ tag.privillege }}-tag" ng-repeat="tag in query.tags track by $index">
+                                    <a ui-sref="community.tags.view({ tag:tag.text })" title="View content tagged with {{ tag.text }}">
+                                        <p>{{ tag.text }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="querie-overview-stats">
+                        <ul>
+                            <li class="querie-views">
+                                <div class="icon-view icon"></div>
+                                <p class="querie-views-num">
+                                    {{ query.totalViews || 0 }}
+                                </p>
+                            </li>
+                            <li class="querie-replys">
+                                <a ui-sref="community.queries.view({id: query.id, title: query.clean })" title="View Responses">
+                                    <div class="icon-reply icon"></div>
+                                    <p class="querie-replys-num">
+                                        {{ query.responses.length || 0 }}
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="querie-date">
+                            <p>Posted on:<br />
+                                <span class="post-date">
+                                    {{ query.date | date }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <div class="infinite-scroll-more querie-more" ng-show="queries.length > 5">
+                    <a ><span class="icon-dot-3"></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="medium-0 large-1 columns main-right">
+        <header class="right-header">
+        	<!-- Main Right Heading -->
+        </header>
+        <div class="right-content">
+        	<!-- Main Right Content -->
+        </div>
+    </section>
+</div>

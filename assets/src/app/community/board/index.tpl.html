@@ -1,0 +1,135 @@
+<div id="heading-row" class="row fluid-row">
+	<section class="medium-3 large-2 large-offset-1 columns heading-left">
+		<!-- Section on left of heading -->
+	</section>
+    <section class="medium-9 large-8 columns medium-offset-3 large-offset-3 sub-heading">
+        <h1><a ui-sref="community.board">Opportunities Board</a></h1>
+    </section>
+    <section class="medium-0 large-1 columns heading-right">
+		<!-- Section on right of heading -->
+	</section>
+</div>
+
+<div class="row fluid-row">
+
+    <section class="medium-3 large-2 columns large-offset-1 main-left connections-left">
+        <div class="wrapper" ui-view="leftside">
+
+        </div>
+    </section>
+
+    <section class="medium-9 large-8 large-offset-3 medium-offset-3 columns main-center board-center">
+
+        <header class="board-sub-nav">
+            <div class="board-sub-nav-left" ui-view="board-nav">
+                <ul ui-view="board-nav">
+                    <li class="board-sort"><a dropdown-toggle="#board-sort-menu">Sort By <span class="icon-vote-down icon"></span></a></li>
+                </ul>
+            </div>
+            <div class="sub-nav-search">
+                <input 
+                    class="sub-search-field" 
+                    type="search" 
+                    name="sub-search-field" 
+                    ng-model="queryValue"
+                    placeholder="Search"
+                    ng-search="searchOpportunities(queryValue)" 
+                />
+            </div>
+            <ul class="board-sub-nav-right" ng-show="currentUser">
+                <li class="board-new"><a ui-sref="community.board.new" title="New Opportunity"><span class="icon-plus"></span></a></li>
+                <li class="board-myPosts"><a title="View your Posts">My Posts</a></li>
+            </ul>
+        </header>
+        <div class="sort-container" id="board-sort-menu">
+            <ul class="sort-menu">
+                <li><a class="active">Most Recent <span class="icon-check icon"></span></a></li>
+                <li><a >Most Popular <span class="icon-check icon"></span></a></li>
+                <li><a >Viewed <span class="icon-check icon"></span></a></li>
+                <li ng-show="currentUser"><a >From Connections <span class="icon-check icon"></span></a></li>
+            </ul>
+        </div>
+
+        <section class="clearfix">
+            <alert class="animate-repeat" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </section>
+        
+        <div 
+            masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".tile", "gutter": ".gutter-sizer" }' 
+            tiles="opportunities"
+            class="board-container" 
+            ui-view="board"
+        >
+            <div class="gutter-sizer"></div>
+            <div 
+                masonry-tile
+                ng-repeat="board in opportunities | filter:queryValue"
+                class="animate-repeat tile board-pod-wrap"
+                ng-init="pod.active = true"
+                ng-class="{deactivate: !pod.active}"
+            >
+
+                <div class="board-pod">
+                    <section class="pod-banner" ng-show="board.imgs">
+                        <a title="View {{ board.title }}" ui-sref="community.board.view({id: board.id, title: board.clean() })">
+                            <img ng-src="{{ board.imgs[0].src }}" />
+                        </a>
+                    </section>
+                    <section class="pod-header">
+                        <div 
+                            class="pod-user-pic generate-image" 
+                            signature="{{ board.author.signature }}"
+                        >
+                        </div>
+                        <h3><a ui-sref="community.board.view({id: board.id, title: board.clean() })">{{ board.title }}</a></h3>
+                        <p>
+                            <a >
+                                {{board.author.firstName }} {{board.author.lastName }}
+                            </a>
+                            &middot;
+                            <span>{{ board.date | date }}</span>
+                        </p>
+                    </section>
+                    <section class="pod-body">
+                        <p class="pod-description">{{ board.description }}</p>
+                    </section>
+                    <section class="pod-footer">
+                        <div 
+                            class="pod-exit option"
+                            title="Remove this Opportunity"
+                            ng-click="removeTile(board.id)"
+                        >
+                            <a ><span class="icon-close-empty icon"></span></a>
+                        </div
+                        ><div 
+                            class="pod-more option"
+                            title="More about this Opportunity" 
+                            ui-sref="community.board.view({id: board.id, title: board.clean() })"
+                        >
+                            <a ><span class="icon-arrow-right icon"></span></a>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
+            <div class="clearfix">
+                <div class="infinite-scroll-more" ng-show="opportunities.length > 5">
+                    <a ><span class="icon-dot-3"></span></a>
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
+
+    <section class="medium-0 large-1 columns main-right">
+        <header class="right-header">
+        	<!-- Main Right Heading -->
+        </header>
+        <div class="right-content">
+        	<!-- Main Right Content -->
+        </div>
+    </section>
+
+</div>

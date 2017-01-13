@@ -1,0 +1,20 @@
+<input 
+	type="email" 
+	id="inputEmail" 
+	name="email" 
+	class="signup-input"
+	placeholder="Email" 
+	value=""
+	force-focus="true"
+	ng-model="registerData.email"
+	required
+	ng-enter="nextStep(registerForm.email, 'username')"
+	lowercase
+	ng-unique="email"
+>
+<div 
+	class="signup-prompt"
+>
+	<p ng-hide="registerForm.$invalid">Press Enter to continue.</P>
+	<p ng-show="registerForm.email.$error.unique">Email already in use. <a ui-sref="login">Login Here</a></p>
+</div>

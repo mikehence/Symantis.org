@@ -1,0 +1,21 @@
+<div gridster="gridsterOpts">
+	<ul>
+		<li 
+			gridster-item="item" 
+			ng-repeat="item in standardItems"
+			class="gridster-item"
+		>
+			<small>
+			#{{ item.id }}
+			{{ item.row }}.row
+			{{ item.col }}.col
+			</small>
+			<br>
+			<small>
+			{{ item.sizeY }} row
+			large-{{ item.sizeX }} column
+			</small>
+			
+        </li>
+	</ul>
+</div>

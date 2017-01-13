@@ -10,6 +10,24 @@
 
 module.exports.bootstrap = function (cb) {
 
+  	sails.Nodemailer = require('nodemailer');
+  	sails.GitHubApi = require("github");
+  	sails.Wordpress = require("wordpress")
+  						.createClient({
+						    url: "---",
+						    username: "---",
+						    password: "---"
+						});
+
+	/*
+	var transporter = nodemailer.createTransport();
+	transporter.sendMail({
+	    from: 'sender@address',
+	    to: 'receiver@address',
+	    subject: 'hello',
+	    text: 'hello world!'
+	});	
+	*/
   // It's very important to trigger this callack method when you are finished 
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   cb();

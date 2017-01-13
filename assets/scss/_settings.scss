@@ -1,10 +1,22 @@
 // The latest Foundation settings can be found here:
 // https://github.com/zurb/bower-foundation/blob/master/scss/foundation/_settings.scss
 
-$primary-color: rgba(42,114,113,1.0);
-$secondary-color: rgba(34,100,98,1.0);
-$tertiary-color: rgba(124,191,182,1.0);
 
+$body-font-color: #000 !default;
+$heading-font-color: #fff!default;
+
+$primary-color: rgba(59,148,139,1.0);
+//primary -- #‎3b948b‬
+
+$sy-red: rgba(199,64,61,1.0);
+
+$sy-blue: rgba(61,139,199,1.0);
+
+$offWhite: rgba(232,232,232,1.0);
+$light: rgba(190,192,188,0.7);
+$gray: rgba(137,139,136,1.0);
+$dark: rgba(46,48,44,1.0);
+$darkest: rgba(18,20,15,1.0);
 
 // $alert-color: #f04124 !default;
 // $success-color: #43AC6A !default;
@@ -12,3 +24,283 @@ $tertiary-color: rgba(124,191,182,1.0);
 // $info-color: #a0d3e8 !default;
 
 // $body-bg: rgba(86,87,89,1.0);
+
+
+//Modal Style Override
+
+$reveal-modal-bg: $darkest;
+$reveal-border-width: 0px;
+$reveal-box-shadow: 2px 3px 15px 0px rgba(0, 0, 0, 0.45);
+
+$reveal-close-color: #FFFFFF;
+$reveal-close-weight: light;
+
+
+@mixin font-regular($size) {
+	font-family: 'open_sansregular', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: $dark;
+	font-size: $size;
+}
+@mixin font-light($size) {
+	font-family: 'open_sanslight', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: black;
+	font-size: $size;
+}
+@mixin font-semi($size) {
+	font-family: 'open_sanssemibold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: $dark;
+	font-size: $size;
+}
+@mixin font-bold($size) {
+	font-family: 'open_sansbold', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: $dark;
+	font-size: $size;
+}
+@mixin font-italic($size) {
+	font-family: 'open_sansitalic', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: black;
+	font-size: $size;
+}
+@mixin font-bitter($size) {
+	font-family: 'bitter', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: black;
+	font-size: $size;
+}
+@mixin font-bitter2($size) {
+	font-family: 'bitter2', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: black;
+	font-size: $size;
+}
+@mixin icon($size,$color) {
+	color: $color;
+	line-height: 1;
+	height: auto;
+	font-size: $size;
+}
+@mixin transition($time) {
+	-webkit-transition: all $time ease;                  
+    -moz-transition: all $time ease;                 
+    -o-transition: all $time ease;   
+    -ms-transition: all $time ease;          
+    transition: all $time ease;
+}
+@mixin tranSpec($object,$time) {
+	-webkit-transition: $object $time ease;                  
+    -moz-transition: $object $time ease;                 
+    -o-transition: $object $time ease;   
+    -ms-transition: $object $time ease;          
+    transition: $object $time ease;
+}
+@mixin drop-shadow($opac) {
+	-webkit-box-shadow: 2px 3px 15px 0px rgba(0, 0, 0, $opac);
+	-moz-box-shadow:    2px 3px 15px 0px rgba(0, 0, 0, $opac);
+	box-shadow:         2px 3px 15px 0px rgba(0, 0, 0, $opac);
+}
+@mixin no-highlight {
+	-webkit-user-select: none;      
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+@mixin columns($number, $gutter) {
+	-webkit-column-count: $number;
+    -moz-column-count: $number;
+    column-count: $number;
+    -webkit-column-gap: $gutter;
+    -moz-column-gap: $gutter;
+    column-gap: $gutter;
+}
+
+.preloader-container {
+	width: 100%;
+	height: 400px;
+	//position: relative;
+	position: absolute;
+	//float: left;
+	.preloader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 10px;
+		width: 10px;
+		border-radius: 50%;
+		//BLUE
+		background-color: rgba(61,139,199,1.0);
+		margin-left: -7px;
+		margin-top: -7px;
+		display: block;
+		-webkit-animation: circle2-anim 0.8s infinite running;
+    	animation: circle2-anim 0.8s infinite running;
+		&:after {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			//RED
+			background-color: rgba(199,64,61,1.0);
+			left: -20px;
+			display: block;
+    		-webkit-animation: circle1-anim 0.8s infinite running;
+    		animation: circle1-anim 0.8s infinite running;
+		}
+		&:before {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			//PRIME
+			background-color: rgba(59,148,139,1.0);
+			left: 20px;
+			display: block;
+			-webkit-animation: circle3-anim 0.8s infinite running;
+    		animation: circle3-anim 0.8s infinite running;
+		}
+	}
+}
+@-webkit-keyframes circle1-anim {
+	0% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	17% {
+		background-color: rgba(199,64,61,1);
+	}
+	34% {
+		background-color: rgba(199,64,61,1);
+	}
+	51% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	68% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	85% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	100% {
+		background-color: rgba(199,64,61,0.3);
+	}
+}
+@-webkit-keyframes circle2-anim {
+	0% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	17% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	34% {
+		background-color: rgba(61,139,199,1.0);
+	}
+	51% {
+		background-color: rgba(61,139,199,1.0);
+	}
+	68% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	85% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	100% {
+		background-color: rgba(61,139,199,0.3);
+	}
+}
+@-webkit-keyframes circle3-anim {
+	0% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	17% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	34% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	51% {
+		background-color: rgba(59,148,139,1.0);
+	}
+	68% {
+		background-color: rgba(59,148,139,1.0);
+	}
+	85% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	100% {
+		background-color: rgba(59,148,139,0.3);
+	}
+}
+@keyframes circle1-anim {
+	0% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	17% {
+		background-color: rgba(199,64,61,1);
+	}
+	34% {
+		background-color: rgba(199,64,61,1);
+	}
+	51% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	68% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	85% {
+		background-color: rgba(199,64,61,0.3);
+	}
+	100% {
+		background-color: rgba(199,64,61,0.3);
+	}
+}
+@keyframes circle2-anim {
+	0% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	17% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	34% {
+		background-color: rgba(61,139,199,1.0);
+	}
+	51% {
+		background-color: rgba(61,139,199,1.0);
+	}
+	68% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	85% {
+		background-color: rgba(61,139,199,0.3);
+	}
+	100% {
+		background-color: rgba(61,139,199,0.3);
+	}
+}
+@keyframes circle3-anim {
+	0% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	17% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	34% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	51% {
+		background-color: rgba(59,148,139,1.0);
+	}
+	68% {
+		background-color: rgba(59,148,139,1.0);
+	}
+	85% {
+		background-color: rgba(59,148,139,0.3);
+	}
+	100% {
+		background-color: rgba(59,148,139,0.3);
+	}
+}
+
+
+
+
+
+
+
+
